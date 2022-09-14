@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceList", "PriceList\PriceList.csproj", "{2660333B-E14D-406F-8E7F-D49B9EE28379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2660333B-E14D-406F-8E7F-D49B9EE28379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2660333B-E14D-406F-8E7F-D49B9EE28379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2660333B-E14D-406F-8E7F-D49B9EE28379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2660333B-E14D-406F-8E7F-D49B9EE28379}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08BC3244-EE79-41C4-8C02-381DF54565C9}
+	EndGlobalSection
+EndGlobal
