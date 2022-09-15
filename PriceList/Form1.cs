@@ -34,7 +34,57 @@ namespace PriceList
             dgvProducts.DataSource = dataBase.GetProducts();
             dgvSalers.DataSource = dataBase.GetSaler();
             dgvModels.DataSource = dataBase.getModels();
-            dataBase.dbClose();
+            dgvSetting();
+        }
+        public void dgvSetting()
+        {
+            dgvModels.Columns[0].ReadOnly = true;
+            dgvMonufacturers.Columns[0].ReadOnly = true;
+            dgvPriceList.Columns[0].ReadOnly = true;
+            dgvProducts.Columns[0].ReadOnly = true;
+            dgvSalers.Columns[0].ReadOnly = true;
+        }
+        Model selectedModel;
+        private void btnModelDelete_Click(object sender, EventArgs e)
+        {
+            dataBase.deleteModel(selectedModel.id);
+            btnModelDelete.Enabled = false;
+            btnModelUpdate.Enabled = false;
+            dgvModels.DataSource = dataBase.getModels();
+        }
+
+        private void dgvModels_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex < 0)
+            {
+                return;
+            }
+            if (dgvModels.Rows[e.RowIndex].Cells[0].Value != null )
+            {
+                selectedModel = new Model();
+                btnModelDelete.Enabled = true;
+                btnModelUpdate.Enabled = true;
+                selectedModel.id = dgvModels.Rows[e.RowIndex].Cells[0].Value.ToString();
+                selectedModel.title = dgvModels.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+        }
+
+        private void btnModelUpdate_Click(object sender, EventArgs e)
+        {
+            var rowIndex = dgvModels.CurrentCell.RowIndex;
+            if (rowIndex < 0)
+            {
+                return;
+            }
+            if (dgvModels.Rows[rowIndex].Cells[0].Value != null)
+            {
+                var model = new Model();
+                model.id = dgvModels.Rows[rowIndex].Cells[0].Value.ToString();
+                model.title = dgvModels.Rows[rowIndex].Cells[1].Value.ToString();
+                dataBase.updateModel(model);
+                btnModelDelete.Enabled = false;
+                btnModelUpdate.Enabled = false;
+            }
         }
     }
 }

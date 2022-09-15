@@ -30,6 +30,19 @@ namespace PriceList
             List<Model> list = db.Query<Model>().ToList<Model>();
             return list;
         }
+
+        public void updateModel(Model model)
+        {
+            Model fModel = db.Query<Model>(mdl => mdl.id == model.id)[0];
+            fModel.title = model.title;
+            db.Store(fModel);
+
+        }
+        public void deleteModel(string id)
+        {
+            Model model = db.Query<Model>(mdl => mdl.id == id)[0];
+            db.Delete(model);
+        }
         //Work with Monufacturer
         public void addMonufacturer(Monufacturer monufacturer)
         {
