@@ -15,6 +15,8 @@ namespace PriceList
         public void dbConnect()
         {
             db = Db4oFactory.OpenFile(filename);
+            db.Ext().Configure().ObjectClass(typeof(Price)).CascadeOnActivate(true);
+            db.Ext().Configure().ObjectClass(typeof(Product)).CascadeOnActivate(true);
         }
         public void dbClose()
         {
@@ -40,6 +42,9 @@ namespace PriceList
         }
         public void deleteModel(string id)
         {
+
+            Product product = db.Query<Product>(prd => prd.model.id == id)[0];
+            db.Delete(product);
             Model model = db.Query<Model>(mdl => mdl.id == id)[0];
             db.Delete(model);
         }
