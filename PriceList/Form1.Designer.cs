@@ -50,7 +50,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnMonufacturerGenerate = new System.Windows.Forms.Button();
+            this.nudMonufacturerCount = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtMonufacturerSite = new System.Windows.Forms.TextBox();
+            this.btnMonufacturerAdd = new System.Windows.Forms.Button();
             this.cmbMonufacturerCountry = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,8 +70,6 @@
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dgvPriceList = new System.Windows.Forms.DataGridView();
-            this.btnMonufacturerAdd = new System.Windows.Forms.Button();
-            this.txtMonufacturerSite = new System.Windows.Forms.TextBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -88,6 +91,8 @@
             this.tabPage1.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMonufacturerCount)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonufacturers)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -331,6 +336,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.groupBox4);
             this.tabPage8.Controls.Add(this.groupBox3);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
@@ -339,6 +345,49 @@
             this.tabPage8.TabIndex = 0;
             this.tabPage8.Text = "Добавление";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnMonufacturerGenerate);
+            this.groupBox4.Controls.Add(this.nudMonufacturerCount);
+            this.groupBox4.Location = new System.Drawing.Point(18, 278);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(272, 119);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Генерация";
+            // 
+            // btnMonufacturerGenerate
+            // 
+            this.btnMonufacturerGenerate.Location = new System.Drawing.Point(84, 58);
+            this.btnMonufacturerGenerate.Name = "btnMonufacturerGenerate";
+            this.btnMonufacturerGenerate.Size = new System.Drawing.Size(95, 41);
+            this.btnMonufacturerGenerate.TabIndex = 1;
+            this.btnMonufacturerGenerate.Text = "Сгенерировать";
+            this.btnMonufacturerGenerate.UseVisualStyleBackColor = true;
+            this.btnMonufacturerGenerate.Click += new System.EventHandler(this.btnMonufacturerGenerate_Click);
+            // 
+            // nudMonufacturerCount
+            // 
+            this.nudMonufacturerCount.Location = new System.Drawing.Point(49, 32);
+            this.nudMonufacturerCount.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudMonufacturerCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudMonufacturerCount.Name = "nudMonufacturerCount";
+            this.nudMonufacturerCount.Size = new System.Drawing.Size(165, 20);
+            this.nudMonufacturerCount.TabIndex = 0;
+            this.nudMonufacturerCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // groupBox3
             // 
@@ -355,6 +404,23 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Добавление";
+            // 
+            // txtMonufacturerSite
+            // 
+            this.txtMonufacturerSite.Location = new System.Drawing.Point(49, 163);
+            this.txtMonufacturerSite.Name = "txtMonufacturerSite";
+            this.txtMonufacturerSite.Size = new System.Drawing.Size(165, 20);
+            this.txtMonufacturerSite.TabIndex = 7;
+            // 
+            // btnMonufacturerAdd
+            // 
+            this.btnMonufacturerAdd.Location = new System.Drawing.Point(84, 196);
+            this.btnMonufacturerAdd.Name = "btnMonufacturerAdd";
+            this.btnMonufacturerAdd.Size = new System.Drawing.Size(95, 41);
+            this.btnMonufacturerAdd.TabIndex = 6;
+            this.btnMonufacturerAdd.Text = "Добавить";
+            this.btnMonufacturerAdd.UseVisualStyleBackColor = true;
+            this.btnMonufacturerAdd.Click += new System.EventHandler(this.btnMonufacturerAdd_Click);
             // 
             // cmbMonufacturerCountry
             // 
@@ -507,23 +573,6 @@
             this.dgvPriceList.Size = new System.Drawing.Size(541, 414);
             this.dgvPriceList.TabIndex = 1;
             // 
-            // btnMonufacturerAdd
-            // 
-            this.btnMonufacturerAdd.Location = new System.Drawing.Point(84, 196);
-            this.btnMonufacturerAdd.Name = "btnMonufacturerAdd";
-            this.btnMonufacturerAdd.Size = new System.Drawing.Size(95, 41);
-            this.btnMonufacturerAdd.TabIndex = 6;
-            this.btnMonufacturerAdd.Text = "Добавить";
-            this.btnMonufacturerAdd.UseVisualStyleBackColor = true;
-            this.btnMonufacturerAdd.Click += new System.EventHandler(this.btnMonufacturerAdd_Click);
-            // 
-            // txtMonufacturerSite
-            // 
-            this.txtMonufacturerSite.Location = new System.Drawing.Point(49, 163);
-            this.txtMonufacturerSite.Name = "txtMonufacturerSite";
-            this.txtMonufacturerSite.Size = new System.Drawing.Size(165, 20);
-            this.txtMonufacturerSite.TabIndex = 7;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
@@ -578,6 +627,7 @@
             this.countryDataGridViewTextBoxColumn.ReadOnly = true;
             this.countryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.countryDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.countryDataGridViewTextBoxColumn.Width = 120;
             // 
             // siteDataGridViewTextBoxColumn
             // 
@@ -585,6 +635,7 @@
             this.siteDataGridViewTextBoxColumn.HeaderText = "Сайт";
             this.siteDataGridViewTextBoxColumn.Name = "siteDataGridViewTextBoxColumn";
             this.siteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.siteDataGridViewTextBoxColumn.Width = 150;
             // 
             // Delete
             // 
@@ -620,6 +671,8 @@
             this.tabPage1.PerformLayout();
             this.tabControl3.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudMonufacturerCount)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonufacturers)).EndInit();
@@ -679,6 +732,9 @@
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.Button btnMonufacturerAdd;
         private System.Windows.Forms.TextBox txtMonufacturerSite;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnMonufacturerGenerate;
+        private System.Windows.Forms.NumericUpDown nudMonufacturerCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewComboBoxColumn countryDataGridViewTextBoxColumn;

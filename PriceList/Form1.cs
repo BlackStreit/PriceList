@@ -317,7 +317,29 @@ namespace PriceList
                 messageBoxError("Не верный формат сайта");
             }
         }
-
+        string[] countries = new string[]
+        {
+            "Россия",
+            "США",
+            "Великобритания",
+            "Китай",
+            "Япония",
+            "Нидерланды",
+            "Германия",
+            "Франция"
+        };
+        private void btnMonufacturerGenerate_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < nudMonufacturerCount.Value; i++)
+            {
+                Monufacturer monufacturer = new Monufacturer();
+                monufacturer.title = generateString(5, 15);
+                monufacturer.country = countries[random.Next(0, countries.Length)];
+                monufacturer.site = generateString(10, 20) + "." + generateString(2, 5);
+                dataBase.addMonufacturer(monufacturer);
+                monufacturerBindingSource.Add(monufacturer);
+            }
+        }
         #endregion
     }
 }
