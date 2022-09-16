@@ -21,7 +21,7 @@ namespace PriceList.Classes
         {
             id = Guid.NewGuid().ToString();
         }
-
+        
         public Price(Saler saler, Product product, int price)
         {
             id = Guid.NewGuid().ToString();
@@ -29,5 +29,6 @@ namespace PriceList.Classes
             this.product = product;
             this.price = price;
         }
+
     }
 }

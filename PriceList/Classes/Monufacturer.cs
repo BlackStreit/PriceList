@@ -29,5 +29,39 @@ namespace PriceList.Classes
             this.country = country;
             this.site = site;
         }
+
+        public Monufacturer(string id, string title, string country, string site) : this(id, title, country)
+        {
+            this.id = id;
+            this.title = title;
+            this.country = country;
+            this.site = site;
+        }
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            else
+            {
+                if(id == (obj as Monufacturer).id && title == (obj as Monufacturer).title && country == (obj as Monufacturer).country
+                    && (obj as Monufacturer).site == site)
+                {
+                    return true;   
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //public override string ToString()
+        //{
+        //    string info = $"id: {id}\nНазвание: {title}\nСтрана: {country}\nСайт: {site}";
+        //    return info;
+        //}
     }
 }

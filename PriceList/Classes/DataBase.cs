@@ -10,7 +10,7 @@ namespace PriceList
 {
     internal class DataBase
     {
-        String filename = @"C:\Users\Администратор\source\repos\PriceList\pricelist.data";
+        String filename = @"pricelist.data";
         IObjectContainer db;
         public void dbConnect()
         {
@@ -22,14 +22,14 @@ namespace PriceList
         {
             db.Close();
         }
-        //Work with models
+        #region Работа с моделями
         public void addModel(Model model)
         {
             db.Store(model);
         }
-        public List<Model> getModels()
+        public List<Model> getModels(string title)
         {
-            List<Model> list = db.Query<Model>().ToList<Model>();
+            List<Model> list = db.Query<Model>(mdl => mdl.title.Contains(title)).ToList<Model>();
             return list;
         }
 
@@ -42,13 +42,20 @@ namespace PriceList
         }
         public void deleteModel(string id)
         {
+            try
+            {
+                Product product = db.Query<Product>(prd => prd.model.id == id)[0];
+                db.Delete(product);
+            }
+            catch(Exception ex)
+            {
 
-            Product product = db.Query<Product>(prd => prd.model.id == id)[0];
-            db.Delete(product);
+            }
             Model model = db.Query<Model>(mdl => mdl.id == id)[0];
             db.Delete(model);
         }
-        //Work with Monufacturer
+        #endregion
+        #region Работа с производителем
         public void addMonufacturer(Monufacturer monufacturer)
         {
             db.Store(monufacturer);
@@ -58,6 +65,29 @@ namespace PriceList
             List<Monufacturer> monufacturers = db.Query<Monufacturer>().ToList<Monufacturer>();
             return monufacturers;
         }
+        public void deleteMonufacturer(string id)
+        {
+            try
+            {
+                Product product = db.Query<Product>(prd => prd.monufacturer.id == id)[0];
+                db.Delete(product);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            var Monufacturer = db.Query<Monufacturer>(mdl => mdl.id == id)[0];
+            db.Delete(Monufacturer);
+        }
+        public void updateMonufacturer(Monufacturer monufacturer)
+        {
+            var foundMon = db.Query<Monufacturer>(mnf => mnf.id == monufacturer.id)[0];
+            foundMon.title = monufacturer.title;
+            foundMon.country = monufacturer.country;
+            foundMon.site = monufacturer.site;
+            db.Store(foundMon);
+        }
+        #endregion
         //Work with PriceList
         public void addPrice(Price priceList)
         {
