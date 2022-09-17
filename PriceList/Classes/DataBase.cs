@@ -10,7 +10,11 @@ namespace PriceList
 {
     internal class DataBase
     {
-        String filename = @"pricelist.data";
+
+        /// <summary>
+        /// сделать все возможные выводу QuertBeExample, Query, 
+        /// </summary>
+        const String filename = @"pricelist.yap";
         IObjectContainer db;
         public void dbConnect()
         {
@@ -106,7 +110,7 @@ namespace PriceList
         {
             return db.Query<Product>().ToList<Product>();
         }
-        //Work with Saler
+        #region Работа с Продавцами
         public void addSaler(Saler saler)
         {
             db.Store(saler);
@@ -115,5 +119,31 @@ namespace PriceList
         {
             return db.Query<Saler>().ToList<Saler>();
         }
+        public void deleteSaler(string id)
+        {
+            try
+            {
+                Price product = db.Query<Price>(prd => prd.saler.id == id)[0];
+                db.Delete(product);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            var saler = db.Query<Saler>(slr => slr.id == id)[0];
+            db.Delete(saler);
+        }
+
+        internal void updateSaler(Saler saler)
+        {
+            var found = db.Query<Saler>(slr => slr.id == saler.id)[0];
+            found.title = saler.title;
+            found.address = saler.address;
+            found.phone = saler.phone;
+            found.site = saler.site;
+            db.Store(found);
+
+        }
+        #endregion
     }
 }

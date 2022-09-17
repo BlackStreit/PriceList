@@ -46,10 +46,10 @@ namespace PriceList.Classes
             }
             else
             {
-                if(id == (obj as Monufacturer).id && title == (obj as Monufacturer).title && country == (obj as Monufacturer).country
+                if (id == (obj as Monufacturer).id && title == (obj as Monufacturer).title && country == (obj as Monufacturer).country
                     && (obj as Monufacturer).site == site)
                 {
-                    return true;   
+                    return true;
                 }
                 else
                 {
@@ -57,11 +57,11 @@ namespace PriceList.Classes
                 }
             }
         }
+        
 
-        //public override string ToString()
-        //{
-        //    string info = $"id: {id}\nНазвание: {title}\nСтрана: {country}\nСайт: {site}";
-        //    return info;
-        //}
+        public override string ToString()
+        {
+            return title;
+        }
     }
 }

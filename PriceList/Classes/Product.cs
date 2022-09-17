@@ -29,5 +29,7 @@ namespace PriceList.Classes
             this.model = model;
             this.title = title;
         }
+
+        
     }
 }

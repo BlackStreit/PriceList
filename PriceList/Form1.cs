@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Random = System.Random;
 
 namespace PriceList
@@ -39,17 +40,9 @@ namespace PriceList
             dataBase.addPrice(price);
             dataBase.addProduct(product);
             dataBase.addSaler(saler);
-            foreach (var mon in dataBase.GetMonufacturers())
-            {
-                monufacturerBindingSource.Add(mon);
-            }
             dgvPriceList.DataSource = dataBase.getPrice();
             dgvProducts.DataSource = dataBase.GetProducts();
-            dgvSalers.DataSource = dataBase.GetSaler();
-            foreach (var m in dataBase.getModels(""))
-            {
-                modelBindingSource1.Add(m);
-            }
+            setBindingSource();
             dgvSetting();
             cmbSetting();
         }
@@ -65,6 +58,22 @@ namespace PriceList
         public void cmbSetting()
         {
             cmbMonufacturerCountry.SelectedIndex = 0;
+        }
+
+        public void setBindingSource()
+        {
+            foreach (var mon in dataBase.GetMonufacturers())
+            {
+                monufacturerBindingSource.Add(mon);
+            }
+            foreach (var m in dataBase.getModels(""))
+            {
+                modelBindingSource1.Add(m);
+            }
+            foreach(var saler in dataBase.GetSaler())
+            {
+                salerBindingSource.Add(saler);
+            }
         }
         #endregion
         #region Утилиты
@@ -338,6 +347,208 @@ namespace PriceList
                 monufacturer.site = generateString(10, 20) + "." + generateString(2, 5);
                 dataBase.addMonufacturer(monufacturer);
                 monufacturerBindingSource.Add(monufacturer);
+            }
+        }
+        #endregion
+        #region Работа с продавцами
+        private void cbSalerIsEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbSalerIsEdit.Checked == true)
+            {
+                dgvSalers.Columns[1].ReadOnly = false;
+                dgvSalers.Columns[2].ReadOnly = false;
+                dgvSalers.Columns[3].ReadOnly = false;
+                dgvSalers.Columns[4].ReadOnly = false;
+                dgvSalers.Columns[5].Visible = true;
+            }
+            else
+            {
+                dgvSalers.Columns[1].ReadOnly = true;
+                dgvSalers.Columns[2].ReadOnly = true;
+                dgvSalers.Columns[3].ReadOnly = true;
+                dgvSalers.Columns[4].ReadOnly = true;
+                dgvSalers.Columns[5].Visible = false;
+            }
+        }
+
+        private void dgvSalers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+            if (dgvSalers.Columns[e.ColumnIndex].Index == dgvSalers.Columns.Count - 1)
+            {
+                if (messageBoxClickResult("Удалить эту запись?") == DialogResult.Yes)
+                {
+                    var id = dgvSalers.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    salerBindingSource.RemoveAt(e.RowIndex);
+                    dataBase.deleteSaler(id);
+                }
+            }
+        }
+        Saler selectedSaler;
+        private void dgvSalers_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            selectedSaler = new Saler();
+            selectedSaler.id = dgvSalers.Rows[e.RowIndex].Cells[0].Value.ToString();
+            selectedSaler.title = dgvSalers.Rows[e.RowIndex].Cells[1].Value.ToString();
+            selectedSaler.address = dgvSalers.Rows[e.RowIndex].Cells[2].Value.ToString();
+            selectedSaler.phone = dgvSalers.Rows[e.RowIndex].Cells[3].Value.ToString();
+            selectedSaler.site = dgvSalers.Rows[e.RowIndex].Cells[4].Value.ToString();
+        }
+
+        private void dgvSalers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Saler saler = new Saler();
+            saler.id = dgvSalers.Rows[e.RowIndex].Cells[0].Value.ToString();
+            saler.title = dgvSalers.Rows[e.RowIndex].Cells[1].Value.ToString();
+            saler.address = dgvSalers.Rows[e.RowIndex].Cells[2].Value.ToString();
+            saler.phone = dgvSalers.Rows[e.RowIndex].Cells[3].Value.ToString();
+            saler.site = dgvSalers.Rows[e.RowIndex].Cells[4].Value.ToString();
+            if (selectedSaler.Equals(saler))
+            {
+                return;
+            }
+            if (selectedSaler.site != saler.site)
+            {
+                Regex regex = new Regex(@"\w+[.]\w+");
+                MatchCollection matches = regex.Matches(saler.site);
+                if (matches.Count == 0)
+                {
+                    messageBoxError("Не верный формат сайта");
+                    dgvSalers[4, e.RowIndex].Value = selectedSaler.site;
+                    return;
+                }
+            }
+            if(selectedSaler.phone != saler.phone)
+            {
+                Regex phoneRegex = new Regex(@"^[+]{0,1}[7-8]{1}[(]9{1}\d{2}[)]\d{3}[-]\d{2}[-]\d{2}$");
+                MatchCollection matches = phoneRegex.Matches(saler.phone);
+                if (matches.Count == 0)
+                {
+                    messageBoxError("Не верный формат телефона");
+                    dgvSalers[3, e.RowIndex].Value = selectedSaler.phone;
+                    return;
+                }
+            }
+            var dialogResult = messageBoxClickResult("Изменить эту запись?");
+            if (dialogResult == DialogResult.No)
+            {
+                dgvSalers[1, e.RowIndex].Value = selectedSaler.title;
+                dgvSalers[2, e.RowIndex].Value = selectedSaler.address;
+                dgvSalers[3, e.RowIndex].Value = selectedSaler.phone;
+                dgvSalers[4, e.RowIndex].Value = selectedSaler.site;
+                return;
+            }
+            if (dialogResult == DialogResult.Yes)
+            {
+                dataBase.updateSaler(dgvSalers.CurrentRow.DataBoundItem as Saler);
+            }
+        }
+
+        private void btnSalerAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSalerTitle.Text))
+            {
+                messageBoxError("Вы не ввели название");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtSalerAddress.Text))
+            {
+                messageBoxError("Вы не ввели адрес");
+                return;
+            }
+            Regex siteRegex = new Regex(@"\w+[.]\w+");
+            Regex phoneRegex = new Regex(@"^[+]{0,1}[7-8]{1}[(]9{1}\d{2}[)]\d{3}[-]\d{2}[-]\d{2}$");
+            MatchCollection matches = phoneRegex.Matches(txtSalerPhone.Text);
+            if (matches.Count == 0)
+            {
+                messageBoxError("Не верный формат телефона");
+                return;
+            }
+            matches = siteRegex.Matches(txtSalerSite.Text);
+            if (matches.Count == 0)
+            {
+                messageBoxError("Не верный формат сайта");
+                return;
+            }
+            Saler saler = new Saler();
+            saler.phone = txtSalerPhone.Text;
+            saler.address = txtSalerAddress.Text;
+            saler.title = txtSalerTitle.Text;
+            saler.site = txtSalerSite.Text;
+            dataBase.addSaler(saler);
+            salerBindingSource.Add(saler);
+            messageBoxSuccessAdd();
+            txtSalerPhone.Clear();
+            txtSalerAddress.Clear();
+            txtSalerTitle.Clear();
+            txtSalerSite.Clear();
+        }
+
+        private void txtSalerPhone_TextChanged(object sender, EventArgs e)
+        {
+            //Добавление первой скобки
+            if (txtSalerPhone.Text.Length == 1 && (txtSalerPhone.Text[0] != '+'))
+            {
+                txtSalerPhone.Text += "(9";
+                txtSalerPhone.SelectionStart = 3;
+            }
+            else if (txtSalerPhone.Text.Length == 2 && txtSalerPhone.Text[1] == '7')
+            {
+                txtSalerPhone.Text += "(9";
+                txtSalerPhone.SelectionStart = 4;
+            }
+            //Добавление второй скобки
+            if (txtSalerPhone.Text.Length == 5 && (txtSalerPhone.Text[0] != '+'))
+            {
+                txtSalerPhone.Text += ")";
+                txtSalerPhone.SelectionStart = 6;
+            }
+            else if (txtSalerPhone.Text.Length == 6 && txtSalerPhone.Text[0] == '+')
+            {
+                txtSalerPhone.Text += ")";
+                txtSalerPhone.SelectionStart = 7;
+            }
+            //Добавление -
+            if(txtSalerPhone.Text.Length == 9 && (txtSalerPhone.Text[0] != '+'))
+            {
+                txtSalerPhone.Text += "-";
+                txtSalerPhone.SelectionStart = 10;
+            }
+            else if(txtSalerPhone.Text.Length == 10 && txtSalerPhone.Text[0] == '+')
+            {
+                txtSalerPhone.Text += "-";
+                txtSalerPhone.SelectionStart = 11;
+            }
+            //Добавление -
+            if(txtSalerPhone.Text.Length == 12 && (txtSalerPhone.Text[0] != '+'))
+            {
+                txtSalerPhone.Text += "-";
+                txtSalerPhone.SelectionStart = 13;
+            }
+            else if (txtSalerPhone.Text.Length == 13 && txtSalerPhone.Text[0] == '+')
+            {
+                txtSalerPhone.Text += "-";
+                txtSalerPhone.SelectionStart = 14;
+            }
+        }
+
+        private void btnSalerGenerate_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < nudSalerCount.Value; i++)
+            {
+                Saler saler = new Saler();
+                saler.title = generateString(5, 15);
+                saler.site = generateString(10, 20) + "." + generateString(2, 5);
+                saler.address = generateString(7, 16) + " srt";
+                saler.phone = "7(9" + random.Next(0, 9) + random.Next(0, 9) +")" +
+                    random.Next(0, 9) + random.Next(0, 9) +random.Next(0, 9) + "-" +
+                    random.Next(0, 9) + random.Next(0, 9) + "-" + random.Next(0, 9) + random.Next(0, 9);
+                salerBindingSource.Add(saler);
+                dataBase.addSaler(saler);
+
             }
         }
         #endregion

@@ -31,5 +31,24 @@ namespace PriceList.Classes
             this.phone = phone;
             this.site = site;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            if(this.id == (obj as Saler).id && this.title == (obj as Saler).title
+                && this.phone == (obj as Saler).phone 
+                && this.site == (obj as Saler).site
+                && this.address == (obj as Saler).address)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
