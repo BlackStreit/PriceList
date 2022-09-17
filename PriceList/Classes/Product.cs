@@ -30,6 +30,22 @@ namespace PriceList.Classes
             this.title = title;
         }
 
-        
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            if(id == (obj as Product).id && model.Equals((obj as Product).model)
+                && monufacturer.Equals((obj as Product).monufacturer)
+                && title == (obj as Product).title)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

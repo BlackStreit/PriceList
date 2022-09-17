@@ -26,5 +26,16 @@ namespace PriceList.Classes
             id = Guid.NewGuid().ToString();
             this.title = title;
         }
+
+        public string getInfo()
+        {
+            var info = $"id: {id}\nНазвание: {title}";
+            return info;
+        }
+
+        public override string ToString()
+        {
+            return title;
+        }
     }
 }

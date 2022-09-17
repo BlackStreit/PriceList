@@ -101,7 +101,7 @@ namespace PriceList
         {
             return db.Query<Price>().ToList<Price>();
         }
-        //Work with Product
+        #region Работа с продуктом
         public void addProduct(Product product)
         {
             db.Store(product);
@@ -110,6 +110,43 @@ namespace PriceList
         {
             return db.Query<Product>().ToList<Product>();
         }
+        internal void deleteProduct(string id)
+        {
+            try
+            {
+                var price = db.Query<Price>(prs => prs.product.id == id)[0];
+                db.Delete(price);
+            }
+            catch { }
+            var product = db.Query<Product>(prd => prd.id == id)[0];
+            db.Delete(product);
+        }
+        public bool isProductClone(Model model, Monufacturer monufacturer)
+        {
+            var product = new Product();
+            product.id = null;
+            product.title = null;
+            product.model = model;
+            product.monufacturer = monufacturer;
+            var found = db.QueryByExample(product).Count;
+            if (found > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public void updateProduct(Product product)
+        {
+            var found = db.Query<Product>(prd => prd.id == product.id)[0];
+            found.title = product.title;
+            found.model = product.model;
+            found.monufacturer = product.monufacturer;
+            db.Store(found);
+        }
+        #endregion
         #region Работа с Продавцами
         public void addSaler(Saler saler)
         {
@@ -144,6 +181,8 @@ namespace PriceList
             db.Store(found);
 
         }
+
+
         #endregion
     }
 }

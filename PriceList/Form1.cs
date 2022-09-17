@@ -1,4 +1,5 @@
-﻿using PriceList.Classes;
+﻿using Db4objects.Db4o.Internal.Mapping;
+using PriceList.Classes;
 using Sharpen.Util;
 using System;
 using System.Collections.Generic;
@@ -41,10 +42,11 @@ namespace PriceList
             dataBase.addProduct(product);
             dataBase.addSaler(saler);
             dgvPriceList.DataSource = dataBase.getPrice();
-            dgvProducts.DataSource = dataBase.GetProducts();
             setBindingSource();
             dgvSetting();
             cmbSetting();
+            txtProductMonufacturerInfo.Text = (cmbProductMonufacturer.SelectedItem as Monufacturer)?.getInfo();
+            txtProductModelInfo.Text = (cmbProductModel.SelectedItem as Model)?.getInfo();
         }
         public void dgvSetting()
         {
@@ -53,6 +55,7 @@ namespace PriceList
             dgvPriceList.Columns[0].ReadOnly = true;
             dgvProducts.Columns[0].ReadOnly = true;
             dgvSalers.Columns[0].ReadOnly = true;
+            
         }
 
         public void cmbSetting()
@@ -73,6 +76,10 @@ namespace PriceList
             foreach(var saler in dataBase.GetSaler())
             {
                 salerBindingSource.Add(saler);
+            }
+            foreach(var product in dataBase.GetProducts())
+            {
+                productBindingSource.Add(product);
             }
         }
         #endregion
@@ -549,6 +556,114 @@ namespace PriceList
                 salerBindingSource.Add(saler);
                 dataBase.addSaler(saler);
 
+            }
+        }
+        #endregion
+        #region Работа с продуктами
+        private void cbProductIsEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbProductIsEdit.Checked)
+            {
+                dgvProducts.Columns[1].ReadOnly = false;
+                dgvProducts.Columns[4].Visible = true;
+            }
+            else
+            {
+                dgvProducts.Columns[1].ReadOnly = true;
+                dgvProducts.Columns[4].Visible = false;
+            }
+        }
+
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+            if (dgvProducts.Columns[e.ColumnIndex].Index == dgvProducts.Columns.Count - 1)
+            {
+                if (messageBoxClickResult("Удалить эту запись?") == DialogResult.Yes)
+                {
+                    var id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    productBindingSource.RemoveAt(e.RowIndex);
+                    dataBase.deleteProduct(id);
+                }
+            }
+        }
+
+        private void cmbProductMonufacturer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductMonufacturerInfo.Text = (cmbProductMonufacturer.SelectedItem as Monufacturer)?.getInfo();
+            } 
+            catch (NullReferenceException) { }
+        }
+
+        private void cmbProductModel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProductModelInfo.Text = (cmbProductModel.SelectedItem as Model)?.getInfo();
+            }
+            catch(NullReferenceException) { }
+        }
+
+        private void btnProductAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtProductTitle.Text))
+            {
+                messageBoxError("Вы не ввели название");
+                return;
+            }
+            var model = cmbProductModel.SelectedItem as Model;
+            var monufacturer = cmbProductMonufacturer.SelectedItem as Monufacturer;
+            if (dataBase.isProductClone(model, monufacturer))
+            {
+                messageBoxError("Такой продукт уже существует");
+                return;
+            }
+            var product = new Product();
+            product.title = txtProductTitle.Text;
+            product.model = model;
+            product.monufacturer = monufacturer;
+            productBindingSource.Add(product);
+            dataBase.addProduct(product);
+            txtProductTitle.Clear();
+            messageBoxSuccessAdd();
+        }
+        Product selectedProduct;
+        private void dgvProducts_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            selectedProduct = new Product();
+            selectedProduct.id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
+            selectedProduct.title = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
+            selectedProduct.monufacturer = dgvProducts.Rows[e.RowIndex].Cells[2].Value as Monufacturer;
+            selectedProduct.model = dgvProducts.Rows[e.RowIndex].Cells[3].Value as Model;            
+        }
+
+        private void dgvProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var monufacturer = dgvProducts.Rows[e.RowIndex].Cells[2].Value;
+            var model = dgvProducts.Rows[e.RowIndex].Cells[3].Value;
+            Product product = new Product();
+            product.id = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
+            product.title = dgvProducts.Rows[e.RowIndex].Cells[1].Value.ToString();
+            product.monufacturer = monufacturer as Monufacturer;
+            product.model = model as Model;
+            if (selectedProduct.Equals(product))
+            {
+                return;
+            }
+            var dialogResult = messageBoxClickResult("Изменить эту запись?");
+            if (dialogResult == DialogResult.No)
+            {
+                dgvProducts[1, e.RowIndex].Value = selectedProduct.title;
+                return;
+            }
+            if (dialogResult == DialogResult.Yes)
+            {
+                dataBase.updateProduct(dgvProducts.CurrentRow.DataBoundItem as Product);
             }
         }
         #endregion

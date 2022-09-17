@@ -58,7 +58,11 @@ namespace PriceList.Classes
             }
         }
         
-
+        public string getInfo()
+        {
+            var info = $"id: {id}\nНазвание: {title}\nСтрана: {country}\nСайт: {site}";
+            return info;
+        }
         public override string ToString()
         {
             return title;

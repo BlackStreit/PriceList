@@ -46,7 +46,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtModelfound = new System.Windows.Forms.TextBox();
             this.dgvModels = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDel = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.modelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -64,11 +67,17 @@
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.cbMonufacturerIsEdit = new System.Windows.Forms.CheckBox();
             this.dgvMonufacturers = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.siteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.monufacturerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnSalerGenerate = new System.Windows.Forms.Button();
             this.nudSalerCount = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtSalerPhone = new System.Windows.Forms.TextBox();
@@ -83,26 +92,37 @@
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.cbSalerIsEdit = new System.Windows.Forms.CheckBox();
             this.dgvSalers = new System.Windows.Forms.DataGridView();
-            this.Удалить = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.dgvPriceList = new System.Windows.Forms.DataGridView();
-            this.btnSalerGenerate = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.siteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monufacturerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.siteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Удалить = new System.Windows.Forms.DataGridViewButtonColumn();
             this.salerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabControl5 = new System.Windows.Forms.TabControl();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtProductModelInfo = new System.Windows.Forms.RichTextBox();
+            this.txtProductMonufacturerInfo = new System.Windows.Forms.RichTextBox();
+            this.btnProductAdd = new System.Windows.Forms.Button();
+            this.txtProductTitle = new System.Windows.Forms.TextBox();
+            this.cmbProductMonufacturer = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbProductModel = new System.Windows.Forms.ComboBox();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.cbProductIsEdit = new System.Windows.Forms.CheckBox();
+            this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dgvPriceList = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monufacturerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Удаление = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -112,6 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudModelCount)).BeginInit();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelBindingSource1)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage8.SuspendLayout();
@@ -119,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMonufacturerCount)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonufacturers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monufacturerBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage10.SuspendLayout();
@@ -126,13 +148,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSalerCount)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salerBindingSource)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabControl5.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.monufacturerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -333,6 +357,20 @@
             this.dgvModels.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModels_CellEndEdit);
             this.dgvModels.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // btnDel
             // 
             this.btnDel.HeaderText = "Удаление";
@@ -340,6 +378,10 @@
             this.btnDel.Text = "Удалить";
             this.btnDel.UseColumnTextForButtonValue = true;
             this.btnDel.Visible = false;
+            // 
+            // modelBindingSource1
+            // 
+            this.modelBindingSource1.DataSource = typeof(PriceList.Classes.Model);
             // 
             // tabPage1
             // 
@@ -546,6 +588,48 @@
             this.dgvMonufacturers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMonufacturers_CellEndEdit);
             this.dgvMonufacturers.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
             // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            // 
+            // titleDataGridViewTextBoxColumn1
+            // 
+            this.titleDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titleDataGridViewTextBoxColumn1.DataPropertyName = "title";
+            this.titleDataGridViewTextBoxColumn1.HeaderText = "Название";
+            this.titleDataGridViewTextBoxColumn1.Name = "titleDataGridViewTextBoxColumn1";
+            this.titleDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.titleDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // countryDataGridViewTextBoxColumn
+            // 
+            this.countryDataGridViewTextBoxColumn.DataPropertyName = "country";
+            this.countryDataGridViewTextBoxColumn.HeaderText = "Страна";
+            this.countryDataGridViewTextBoxColumn.Items.AddRange(new object[] {
+            "Россия",
+            "США",
+            "Великобритания",
+            "Китай",
+            "Япония",
+            "Нидерланды",
+            "Германия",
+            "Франция"});
+            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
+            this.countryDataGridViewTextBoxColumn.ReadOnly = true;
+            this.countryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.countryDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.countryDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // siteDataGridViewTextBoxColumn
+            // 
+            this.siteDataGridViewTextBoxColumn.DataPropertyName = "site";
+            this.siteDataGridViewTextBoxColumn.HeaderText = "Сайт";
+            this.siteDataGridViewTextBoxColumn.Name = "siteDataGridViewTextBoxColumn";
+            this.siteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.siteDataGridViewTextBoxColumn.Width = 150;
+            // 
             // Delete
             // 
             this.Delete.HeaderText = "Удаление";
@@ -553,6 +637,10 @@
             this.Delete.Text = "Удалить";
             this.Delete.UseColumnTextForButtonValue = true;
             this.Delete.Visible = false;
+            // 
+            // monufacturerBindingSource
+            // 
+            this.monufacturerBindingSource.DataSource = typeof(PriceList.Classes.Monufacturer);
             // 
             // tabPage3
             // 
@@ -599,6 +687,16 @@
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Генерация";
+            // 
+            // btnSalerGenerate
+            // 
+            this.btnSalerGenerate.Location = new System.Drawing.Point(56, 58);
+            this.btnSalerGenerate.Name = "btnSalerGenerate";
+            this.btnSalerGenerate.Size = new System.Drawing.Size(202, 35);
+            this.btnSalerGenerate.TabIndex = 1;
+            this.btnSalerGenerate.Text = "Сгенерировать";
+            this.btnSalerGenerate.UseVisualStyleBackColor = true;
+            this.btnSalerGenerate.Click += new System.EventHandler(this.btnSalerGenerate_Click);
             // 
             // nudSalerCount
             // 
@@ -757,126 +855,6 @@
             this.dgvSalers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalers_CellEndEdit);
             this.dgvSalers.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
             // 
-            // Удалить
-            // 
-            this.Удалить.HeaderText = "Удаление";
-            this.Удалить.Name = "Удалить";
-            this.Удалить.Text = "Удалить";
-            this.Удалить.UseColumnTextForButtonValue = true;
-            this.Удалить.Visible = false;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dgvProducts);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1016, 497);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Продукты";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // dgvProducts
-            // 
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(25, 19);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.Size = new System.Drawing.Size(541, 414);
-            this.dgvProducts.TabIndex = 1;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.dgvPriceList);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1016, 497);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Список цен";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // dgvPriceList
-            // 
-            this.dgvPriceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPriceList.Location = new System.Drawing.Point(23, 19);
-            this.dgvPriceList.Name = "dgvPriceList";
-            this.dgvPriceList.Size = new System.Drawing.Size(541, 414);
-            this.dgvPriceList.TabIndex = 1;
-            // 
-            // btnSalerGenerate
-            // 
-            this.btnSalerGenerate.Location = new System.Drawing.Point(56, 58);
-            this.btnSalerGenerate.Name = "btnSalerGenerate";
-            this.btnSalerGenerate.Size = new System.Drawing.Size(202, 35);
-            this.btnSalerGenerate.TabIndex = 1;
-            this.btnSalerGenerate.Text = "Сгенерировать";
-            this.btnSalerGenerate.UseVisualStyleBackColor = true;
-            this.btnSalerGenerate.Click += new System.EventHandler(this.btnSalerGenerate_Click);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Название";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // modelBindingSource1
-            // 
-            this.modelBindingSource1.DataSource = typeof(PriceList.Classes.Model);
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            // 
-            // titleDataGridViewTextBoxColumn1
-            // 
-            this.titleDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.titleDataGridViewTextBoxColumn1.DataPropertyName = "title";
-            this.titleDataGridViewTextBoxColumn1.HeaderText = "Название";
-            this.titleDataGridViewTextBoxColumn1.Name = "titleDataGridViewTextBoxColumn1";
-            this.titleDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.titleDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // countryDataGridViewTextBoxColumn
-            // 
-            this.countryDataGridViewTextBoxColumn.DataPropertyName = "country";
-            this.countryDataGridViewTextBoxColumn.HeaderText = "Страна";
-            this.countryDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "Россия",
-            "США",
-            "Великобритания",
-            "Китай",
-            "Япония",
-            "Нидерланды",
-            "Германия",
-            "Франция"});
-            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
-            this.countryDataGridViewTextBoxColumn.ReadOnly = true;
-            this.countryDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.countryDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.countryDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // siteDataGridViewTextBoxColumn
-            // 
-            this.siteDataGridViewTextBoxColumn.DataPropertyName = "site";
-            this.siteDataGridViewTextBoxColumn.HeaderText = "Сайт";
-            this.siteDataGridViewTextBoxColumn.Name = "siteDataGridViewTextBoxColumn";
-            this.siteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.siteDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // monufacturerBindingSource
-            // 
-            this.monufacturerBindingSource.DataSource = typeof(PriceList.Classes.Monufacturer);
-            // 
             // idDataGridViewTextBoxColumn2
             // 
             this.idDataGridViewTextBoxColumn2.DataPropertyName = "id";
@@ -911,9 +889,262 @@
             this.siteDataGridViewTextBoxColumn1.Name = "siteDataGridViewTextBoxColumn1";
             this.siteDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
+            // Удалить
+            // 
+            this.Удалить.HeaderText = "Удаление";
+            this.Удалить.Name = "Удалить";
+            this.Удалить.Text = "Удалить";
+            this.Удалить.UseColumnTextForButtonValue = true;
+            this.Удалить.Visible = false;
+            // 
             // salerBindingSource
             // 
             this.salerBindingSource.DataSource = typeof(PriceList.Classes.Saler);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.tabControl5);
+            this.tabPage4.Controls.Add(this.cbProductIsEdit);
+            this.tabPage4.Controls.Add(this.dgvProducts);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1016, 497);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Продукты";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabControl5
+            // 
+            this.tabControl5.Controls.Add(this.tabPage12);
+            this.tabControl5.Controls.Add(this.tabPage13);
+            this.tabControl5.Location = new System.Drawing.Point(586, 42);
+            this.tabControl5.Name = "tabControl5";
+            this.tabControl5.SelectedIndex = 0;
+            this.tabControl5.Size = new System.Drawing.Size(424, 449);
+            this.tabControl5.TabIndex = 4;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.groupBox7);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage12.Size = new System.Drawing.Size(416, 423);
+            this.tabPage12.TabIndex = 0;
+            this.tabPage12.Text = "Добавление";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.txtProductModelInfo);
+            this.groupBox7.Controls.Add(this.txtProductMonufacturerInfo);
+            this.groupBox7.Controls.Add(this.btnProductAdd);
+            this.groupBox7.Controls.Add(this.txtProductTitle);
+            this.groupBox7.Controls.Add(this.cmbProductMonufacturer);
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.label12);
+            this.groupBox7.Controls.Add(this.label11);
+            this.groupBox7.Controls.Add(this.cmbProductModel);
+            this.groupBox7.Location = new System.Drawing.Point(9, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(404, 279);
+            this.groupBox7.TabIndex = 3;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Добавление";
+            // 
+            // txtProductModelInfo
+            // 
+            this.txtProductModelInfo.Location = new System.Drawing.Point(156, 195);
+            this.txtProductModelInfo.Name = "txtProductModelInfo";
+            this.txtProductModelInfo.ReadOnly = true;
+            this.txtProductModelInfo.Size = new System.Drawing.Size(242, 47);
+            this.txtProductModelInfo.TabIndex = 9;
+            this.txtProductModelInfo.Text = "";
+            // 
+            // txtProductMonufacturerInfo
+            // 
+            this.txtProductMonufacturerInfo.Location = new System.Drawing.Point(156, 91);
+            this.txtProductMonufacturerInfo.Name = "txtProductMonufacturerInfo";
+            this.txtProductMonufacturerInfo.ReadOnly = true;
+            this.txtProductMonufacturerInfo.Size = new System.Drawing.Size(242, 72);
+            this.txtProductMonufacturerInfo.TabIndex = 8;
+            this.txtProductMonufacturerInfo.Text = "";
+            // 
+            // btnProductAdd
+            // 
+            this.btnProductAdd.Location = new System.Drawing.Point(33, 233);
+            this.btnProductAdd.Name = "btnProductAdd";
+            this.btnProductAdd.Size = new System.Drawing.Size(91, 39);
+            this.btnProductAdd.TabIndex = 7;
+            this.btnProductAdd.Text = "Добавить";
+            this.btnProductAdd.UseVisualStyleBackColor = true;
+            this.btnProductAdd.Click += new System.EventHandler(this.btnProductAdd_Click);
+            // 
+            // txtProductTitle
+            // 
+            this.txtProductTitle.Location = new System.Drawing.Point(7, 38);
+            this.txtProductTitle.Name = "txtProductTitle";
+            this.txtProductTitle.Size = new System.Drawing.Size(143, 20);
+            this.txtProductTitle.TabIndex = 6;
+            // 
+            // cmbProductMonufacturer
+            // 
+            this.cmbProductMonufacturer.DataSource = this.monufacturerBindingSource;
+            this.cmbProductMonufacturer.DisplayMember = "title";
+            this.cmbProductMonufacturer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProductMonufacturer.FormattingEnabled = true;
+            this.cmbProductMonufacturer.Location = new System.Drawing.Point(7, 89);
+            this.cmbProductMonufacturer.Name = "cmbProductMonufacturer";
+            this.cmbProductMonufacturer.Size = new System.Drawing.Size(143, 21);
+            this.cmbProductMonufacturer.TabIndex = 5;
+            this.cmbProductMonufacturer.ValueMember = "id";
+            this.cmbProductMonufacturer.SelectedIndexChanged += new System.EventHandler(this.cmbProductMonufacturer_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(35, 67);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(86, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Производитель";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(55, 179);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(46, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Модель";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(50, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Название";
+            // 
+            // cmbProductModel
+            // 
+            this.cmbProductModel.DataSource = this.modelBindingSource1;
+            this.cmbProductModel.DisplayMember = "title";
+            this.cmbProductModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProductModel.FormattingEnabled = true;
+            this.cmbProductModel.Location = new System.Drawing.Point(6, 202);
+            this.cmbProductModel.Name = "cmbProductModel";
+            this.cmbProductModel.Size = new System.Drawing.Size(144, 21);
+            this.cmbProductModel.TabIndex = 1;
+            this.cmbProductModel.ValueMember = "id";
+            this.cmbProductModel.SelectedIndexChanged += new System.EventHandler(this.cmbProductModel_SelectedIndexChanged);
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage13.Size = new System.Drawing.Size(416, 423);
+            this.tabPage13.TabIndex = 1;
+            this.tabPage13.Text = "Поиск";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // cbProductIsEdit
+            // 
+            this.cbProductIsEdit.AutoSize = true;
+            this.cbProductIsEdit.Location = new System.Drawing.Point(712, 19);
+            this.cbProductIsEdit.Name = "cbProductIsEdit";
+            this.cbProductIsEdit.Size = new System.Drawing.Size(161, 17);
+            this.cbProductIsEdit.TabIndex = 2;
+            this.cbProductIsEdit.Text = "Включить редактирование";
+            this.cbProductIsEdit.UseVisualStyleBackColor = true;
+            this.cbProductIsEdit.CheckedChanged += new System.EventHandler(this.cbProductIsEdit_CheckedChanged);
+            // 
+            // dgvProducts
+            // 
+            this.dgvProducts.AllowUserToAddRows = false;
+            this.dgvProducts.AutoGenerateColumns = false;
+            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn3,
+            this.titleDataGridViewTextBoxColumn3,
+            this.monufacturerDataGridViewTextBoxColumn,
+            this.modelDataGridViewTextBoxColumn,
+            this.Удаление});
+            this.dgvProducts.DataSource = this.productBindingSource;
+            this.dgvProducts.Location = new System.Drawing.Point(6, 19);
+            this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.Size = new System.Drawing.Size(560, 472);
+            this.dgvProducts.TabIndex = 1;
+            this.dgvProducts.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvProducts_CellBeginEdit);
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
+            this.dgvProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellEndEdit);
+            this.dgvProducts.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(PriceList.Classes.Product);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.dgvPriceList);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1016, 497);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Список цен";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dgvPriceList
+            // 
+            this.dgvPriceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPriceList.Location = new System.Drawing.Point(23, 19);
+            this.dgvPriceList.Name = "dgvPriceList";
+            this.dgvPriceList.Size = new System.Drawing.Size(541, 414);
+            this.dgvPriceList.TabIndex = 1;
+            // 
+            // idDataGridViewTextBoxColumn3
+            // 
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            // 
+            // titleDataGridViewTextBoxColumn3
+            // 
+            this.titleDataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titleDataGridViewTextBoxColumn3.DataPropertyName = "title";
+            this.titleDataGridViewTextBoxColumn3.HeaderText = "Название";
+            this.titleDataGridViewTextBoxColumn3.Name = "titleDataGridViewTextBoxColumn3";
+            this.titleDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // monufacturerDataGridViewTextBoxColumn
+            // 
+            this.monufacturerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.monufacturerDataGridViewTextBoxColumn.DataPropertyName = "monufacturer";
+            this.monufacturerDataGridViewTextBoxColumn.HeaderText = "Производитель";
+            this.monufacturerDataGridViewTextBoxColumn.Name = "monufacturerDataGridViewTextBoxColumn";
+            this.monufacturerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.monufacturerDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // modelDataGridViewTextBoxColumn
+            // 
+            this.modelDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.modelDataGridViewTextBoxColumn.DataPropertyName = "model";
+            this.modelDataGridViewTextBoxColumn.HeaderText = "Модель";
+            this.modelDataGridViewTextBoxColumn.Name = "modelDataGridViewTextBoxColumn";
+            this.modelDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modelDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Удаление
+            // 
+            this.Удаление.HeaderText = "Удаление";
+            this.Удаление.Name = "Удаление";
+            this.Удаление.Text = "Удалить";
+            this.Удаление.UseColumnTextForButtonValue = true;
+            this.Удаление.Visible = false;
             // 
             // Form1
             // 
@@ -937,6 +1168,7 @@
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.modelBindingSource1)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl3.ResumeLayout(false);
@@ -946,6 +1178,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMonufacturers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monufacturerBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabControl4.ResumeLayout(false);
@@ -955,13 +1188,17 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salerBindingSource)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabControl5.ResumeLayout(false);
+            this.tabPage12.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.modelBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.monufacturerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.salerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1042,6 +1279,26 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.NumericUpDown nudSalerCount;
         private System.Windows.Forms.Button btnSalerGenerate;
+        private System.Windows.Forms.CheckBox cbProductIsEdit;
+        private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox cmbProductModel;
+        private System.Windows.Forms.RichTextBox txtProductModelInfo;
+        private System.Windows.Forms.RichTextBox txtProductMonufacturerInfo;
+        private System.Windows.Forms.Button btnProductAdd;
+        private System.Windows.Forms.TextBox txtProductTitle;
+        private System.Windows.Forms.ComboBox cmbProductMonufacturer;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TabControl tabControl5;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monufacturerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn Удаление;
     }
 }
 

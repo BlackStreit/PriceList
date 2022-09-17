@@ -87,6 +87,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Model.datasource" />
     <None Include="Properties\DataSources\PriceList.Classes.Monufacturer.datasource" />
+    <None Include="Properties\DataSources\PriceList.Classes.Product.datasource" />
     <None Include="Properties\DataSources\PriceList.Classes.Saler.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
