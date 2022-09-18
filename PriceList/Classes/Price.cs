@@ -30,5 +30,13 @@ namespace PriceList.Classes
             this.price = price;
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Price price &&
+                   id == price.id &&
+                   (obj as Price).saler.Equals(saler) &&
+                   (obj as Price).product.Equals(product) &&
+                   this.price == price.price;
+        }
     }
 }

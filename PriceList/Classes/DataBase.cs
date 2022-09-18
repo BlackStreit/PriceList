@@ -92,7 +92,7 @@ namespace PriceList
             db.Store(foundMon);
         }
         #endregion
-        //Work with PriceList
+        #region Работа с ценами
         public void addPrice(Price priceList)
         {
             db.Store(priceList);
@@ -101,6 +101,23 @@ namespace PriceList
         {
             return db.Query<Price>().ToList<Price>();
         }
+        internal void deletePrice(string id)
+        {
+            var price = db.Query<Price>(prc => prc.id == id)[0];
+            db.Delete(price);
+        }
+        internal void updatePrice(Price price)
+        {
+            var pattern = new Price();
+            pattern.id = price.id;
+            pattern.saler = null;
+            pattern.product = null;
+            pattern.price = 0;
+            var found = db.QueryByExample(pattern).Next() as Price;
+            found.price = price.price;
+            db.Store(found);
+        }
+        #endregion
         #region Работа с продуктом
         public void addProduct(Product product)
         {
@@ -181,8 +198,6 @@ namespace PriceList
             db.Store(found);
 
         }
-
-
         #endregion
     }
 }

@@ -41,7 +41,6 @@ namespace PriceList
             dataBase.addPrice(price);
             dataBase.addProduct(product);
             dataBase.addSaler(saler);
-            dgvPriceList.DataSource = dataBase.getPrice();
             setBindingSource();
             dgvSetting();
             cmbSetting();
@@ -80,6 +79,10 @@ namespace PriceList
             foreach(var product in dataBase.GetProducts())
             {
                 productBindingSource.Add(product);
+            }
+            foreach(var price in dataBase.getPrice())
+            {
+                priceBindingSource.Add(price);
             }
         }
         #endregion
@@ -667,5 +670,68 @@ namespace PriceList
             }
         }
         #endregion
+
+        private void cbPriceIsEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPriceIsEdit.Checked)
+            {
+                dgvPriceList.Columns[3].ReadOnly = false;
+                dgvPriceList.Columns[4].Visible = true;
+            }
+            else
+            {
+                dgvPriceList.Columns[3].ReadOnly = true;
+                dgvPriceList.Columns[4].Visible = false;
+            }
+        }
+
+        private void dgvPriceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+            if (dgvPriceList.Columns[e.ColumnIndex].Index == dgvPriceList.Columns.Count - 1)
+            {
+                if (messageBoxClickResult("Удалить эту запись?") == DialogResult.Yes)
+                {
+                    var id = dgvPriceList.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    priceBindingSource.RemoveAt(e.RowIndex);
+                    dataBase.deletePrice(id);
+                }
+            }
+        }
+        Price selectedPrice;
+        private void dgvPriceList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            selectedPrice = new Price();
+            selectedPrice.id = dgvPriceList.Rows[e.RowIndex].Cells[0].Value.ToString();
+            selectedPrice.saler = dgvPriceList.Rows[e.RowIndex].Cells[1].Value as Saler;
+            selectedPrice.product = dgvPriceList.Rows[e.RowIndex].Cells[2].Value as Product;
+            selectedPrice.price = Convert.ToInt32(dgvPriceList.Rows[e.RowIndex].Cells[3].Value);
+        }
+
+        private void dgvPriceList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var price = new Price();
+            price.id = dgvPriceList.Rows[e.RowIndex].Cells[0].Value.ToString();
+            price.saler = dgvPriceList.Rows[e.RowIndex].Cells[1].Value as Saler;
+            price.product = dgvPriceList.Rows[e.RowIndex].Cells[2].Value as Product;
+            price.price = Convert.ToInt32(dgvPriceList.Rows[e.RowIndex].Cells[3].Value);
+            if (selectedPrice.Equals(price))
+            {
+                return;
+            }
+            var dialogResult = messageBoxClickResult("Изменить эту запись?");
+            if (dialogResult == DialogResult.No)
+            {
+                dgvPriceList[3, e.RowIndex].Value = selectedPrice.price;
+                return;
+            }
+            if (dialogResult == DialogResult.Yes)
+            {
+                dataBase.updatePrice(dgvPriceList.CurrentRow.DataBoundItem as Price);
+            }
+        }
     }
 }
