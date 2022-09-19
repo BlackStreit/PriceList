@@ -55,5 +55,11 @@ namespace PriceList.Classes
         {
             return title;
         }
+        public string getInfo()
+        {
+            var info = $"id: {id}\nНазвание {title}\nАдрес: {address}\nТелефон: {phone}\n" +
+                $"Сайт: {site}";
+            return info;
+        }
     }
 }

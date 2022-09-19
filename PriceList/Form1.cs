@@ -46,6 +46,8 @@ namespace PriceList
             cmbSetting();
             txtProductMonufacturerInfo.Text = (cmbProductMonufacturer.SelectedItem as Monufacturer)?.getInfo();
             txtProductModelInfo.Text = (cmbProductModel.SelectedItem as Model)?.getInfo();
+            txtPriceSalerInfo.Text = (cmbPriceSaler.SelectedItem as Saler)?.getInfo();
+            txtPticeProductInfo.Text = (cmbPriceProduct.SelectedItem as Product)?.getInfo();
         }
         public void dgvSetting()
         {
@@ -732,6 +734,24 @@ namespace PriceList
             {
                 dataBase.updatePrice(dgvPriceList.CurrentRow.DataBoundItem as Price);
             }
+        }
+
+        private void cmbPriceSaler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPriceSalerInfo.Text = (cmbPriceSaler.SelectedItem as Saler)?.getInfo();
+            }
+            catch (NullReferenceException) { }
+        }
+
+        private void cmbSalerProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtPticeProductInfo.Text = (cmbPriceProduct.SelectedItem as Product)?.getInfo();
+            }
+            catch (NullReferenceException) { }
         }
     }
 }

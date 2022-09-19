@@ -122,6 +122,19 @@
             this.Удаление = new System.Windows.Forms.DataGridViewButtonColumn();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabControl6 = new System.Windows.Forms.TabControl();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtPticeProductInfo = new System.Windows.Forms.RichTextBox();
+            this.txtPriceSalerInfo = new System.Windows.Forms.RichTextBox();
+            this.cmbPriceProduct = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cmbPriceSaler = new System.Windows.Forms.ComboBox();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
             this.cbPriceIsEdit = new System.Windows.Forms.CheckBox();
             this.dgvPriceList = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,17 +143,6 @@
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Имя = new System.Windows.Forms.DataGridViewButtonColumn();
             this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabControl6 = new System.Windows.Forms.TabControl();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -174,12 +176,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             this.tabControl6.SuspendLayout();
             this.tabPage14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1163,6 +1165,157 @@
             this.tabPage5.Text = "Список цен";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // tabControl6
+            // 
+            this.tabControl6.Controls.Add(this.tabPage14);
+            this.tabControl6.Controls.Add(this.tabPage15);
+            this.tabControl6.Location = new System.Drawing.Point(632, 51);
+            this.tabControl6.Name = "tabControl6";
+            this.tabControl6.SelectedIndex = 0;
+            this.tabControl6.Size = new System.Drawing.Size(367, 440);
+            this.tabControl6.TabIndex = 3;
+            // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.groupBox8);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage14.Size = new System.Drawing.Size(359, 414);
+            this.tabPage14.TabIndex = 0;
+            this.tabPage14.Text = "Добавление";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.txtPticeProductInfo);
+            this.groupBox8.Controls.Add(this.txtPriceSalerInfo);
+            this.groupBox8.Controls.Add(this.cmbPriceProduct);
+            this.groupBox8.Controls.Add(this.button1);
+            this.groupBox8.Controls.Add(this.numericUpDown1);
+            this.groupBox8.Controls.Add(this.label14);
+            this.groupBox8.Controls.Add(this.label16);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.cmbPriceSaler);
+            this.groupBox8.Location = new System.Drawing.Point(26, 21);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(327, 370);
+            this.groupBox8.TabIndex = 7;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Добавление";
+            // 
+            // txtPticeProductInfo
+            // 
+            this.txtPticeProductInfo.Location = new System.Drawing.Point(133, 154);
+            this.txtPticeProductInfo.Name = "txtPticeProductInfo";
+            this.txtPticeProductInfo.ReadOnly = true;
+            this.txtPticeProductInfo.Size = new System.Drawing.Size(188, 96);
+            this.txtPticeProductInfo.TabIndex = 8;
+            this.txtPticeProductInfo.Text = "";
+            // 
+            // txtPriceSalerInfo
+            // 
+            this.txtPriceSalerInfo.Location = new System.Drawing.Point(133, 19);
+            this.txtPriceSalerInfo.Name = "txtPriceSalerInfo";
+            this.txtPriceSalerInfo.ReadOnly = true;
+            this.txtPriceSalerInfo.Size = new System.Drawing.Size(188, 96);
+            this.txtPriceSalerInfo.TabIndex = 7;
+            this.txtPriceSalerInfo.Text = "";
+            // 
+            // cmbPriceProduct
+            // 
+            this.cmbPriceProduct.DataSource = this.productBindingSource;
+            this.cmbPriceProduct.DisplayMember = "title";
+            this.cmbPriceProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPriceProduct.FormattingEnabled = true;
+            this.cmbPriceProduct.Location = new System.Drawing.Point(5, 173);
+            this.cmbPriceProduct.Name = "cmbPriceProduct";
+            this.cmbPriceProduct.Size = new System.Drawing.Size(121, 21);
+            this.cmbPriceProduct.TabIndex = 4;
+            this.cmbPriceProduct.ValueMember = "id";
+            this.cmbPriceProduct.SelectedIndexChanged += new System.EventHandler(this.cmbSalerProduct_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(26, 315);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(83, 43);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(6, 289);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 5;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(38, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Продавец";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(35, 257);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(62, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Стоимость";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(42, 148);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(49, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Продукт";
+            // 
+            // cmbPriceSaler
+            // 
+            this.cmbPriceSaler.DataSource = this.salerBindingSource;
+            this.cmbPriceSaler.DisplayMember = "title";
+            this.cmbPriceSaler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPriceSaler.FormattingEnabled = true;
+            this.cmbPriceSaler.Location = new System.Drawing.Point(0, 43);
+            this.cmbPriceSaler.Name = "cmbPriceSaler";
+            this.cmbPriceSaler.Size = new System.Drawing.Size(121, 21);
+            this.cmbPriceSaler.TabIndex = 3;
+            this.cmbPriceSaler.ValueMember = "id";
+            this.cmbPriceSaler.SelectedIndexChanged += new System.EventHandler(this.cmbPriceSaler_SelectedIndexChanged);
+            // 
+            // tabPage15
+            // 
+            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage15.Size = new System.Drawing.Size(359, 414);
+            this.tabPage15.TabIndex = 1;
+            this.tabPage15.Text = "Поиск";
+            this.tabPage15.UseVisualStyleBackColor = true;
+            // 
             // cbPriceIsEdit
             // 
             this.cbPriceIsEdit.AutoSize = true;
@@ -1239,118 +1392,6 @@
             // 
             this.priceBindingSource.DataSource = typeof(PriceList.Classes.Price);
             // 
-            // tabControl6
-            // 
-            this.tabControl6.Controls.Add(this.tabPage14);
-            this.tabControl6.Controls.Add(this.tabPage15);
-            this.tabControl6.Location = new System.Drawing.Point(632, 51);
-            this.tabControl6.Name = "tabControl6";
-            this.tabControl6.SelectedIndex = 0;
-            this.tabControl6.Size = new System.Drawing.Size(367, 440);
-            this.tabControl6.TabIndex = 3;
-            // 
-            // tabPage14
-            // 
-            this.tabPage14.Controls.Add(this.groupBox8);
-            this.tabPage14.Location = new System.Drawing.Point(4, 22);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage14.Size = new System.Drawing.Size(359, 414);
-            this.tabPage14.TabIndex = 0;
-            this.tabPage14.Text = "tabPage14";
-            this.tabPage14.UseVisualStyleBackColor = true;
-            // 
-            // tabPage15
-            // 
-            this.tabPage15.Location = new System.Drawing.Point(4, 22);
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage15.Size = new System.Drawing.Size(192, 74);
-            this.tabPage15.TabIndex = 1;
-            this.tabPage15.Text = "tabPage15";
-            this.tabPage15.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(32, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Продавец";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(25, 65);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(49, 13);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "Продукт";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(35, 133);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(62, 13);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "Стоимость";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DataSource = this.salerBindingSource;
-            this.comboBox1.DisplayMember = "title";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(35, 35);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.ValueMember = "id";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DataSource = this.productBindingSource;
-            this.comboBox2.DisplayMember = "title";
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(31, 82);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 4;
-            this.comboBox2.ValueMember = "id";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(38, 165);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(64, 203);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 31);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.comboBox2);
-            this.groupBox8.Controls.Add(this.button1);
-            this.groupBox8.Controls.Add(this.numericUpDown1);
-            this.groupBox8.Controls.Add(this.label14);
-            this.groupBox8.Controls.Add(this.label16);
-            this.groupBox8.Controls.Add(this.label15);
-            this.groupBox8.Controls.Add(this.comboBox1);
-            this.groupBox8.Location = new System.Drawing.Point(26, 21);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(327, 303);
-            this.groupBox8.TabIndex = 7;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "groupBox8";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1404,13 +1445,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             this.tabControl6.ResumeLayout(false);
             this.tabPage14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1521,14 +1562,16 @@
         private System.Windows.Forms.TabControl tabControl6;
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbPriceProduct;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbPriceSaler;
         private System.Windows.Forms.TabPage tabPage15;
+        private System.Windows.Forms.RichTextBox txtPticeProductInfo;
+        private System.Windows.Forms.RichTextBox txtPriceSalerInfo;
     }
 }
 

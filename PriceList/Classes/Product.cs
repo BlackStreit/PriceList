@@ -52,5 +52,11 @@ namespace PriceList.Classes
         {
             return title;
         }
+
+        internal string getInfo()
+        {
+            var info = $"id: {id}\nНазвание:{title}\nПроизводитель: {monufacturer}\nМодель: {model}";
+            return info;
+        }
     }
 }
