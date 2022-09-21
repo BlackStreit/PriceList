@@ -117,6 +117,37 @@ namespace PriceList
             found.price = price.price;
             db.Store(found);
         }
+        public bool isPriceClone(int price, Saler saler, Product product)
+        {
+            var priceList = new Price();
+            priceList.id = null;
+            priceList.price = 0;
+            priceList.saler = saler;
+            priceList.product = product;
+            var found = db.QueryByExample(priceList).Count;
+            if (found > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public List<Price> getPrice(Price price)
+        {
+            var list = new List<Price>();
+            try
+            {
+                list = db.Query<Price>(prs => prs.product.id == price.product?.id
+            && prs.saler.id == price.saler?.id).ToList<Price>();
+            }
+            catch(NullReferenceException)
+            {
+
+            }
+            return list;
+        }
         #endregion
         #region Работа с продуктом
         public void addProduct(Product product)

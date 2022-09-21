@@ -2,15 +2,12 @@
 using PriceList.Classes;
 using Sharpen.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Random = System.Random;
 
@@ -20,7 +17,11 @@ namespace PriceList
     {
         #region Загрузка и настройка формы
         DataBase dataBase;
+        System.Windows.Forms.ComboBox cmbPriceSalerfound;
+        System.Windows.Forms.ComboBox cmbPriceProductfound;
         private static Random random = new Random();
+        Chart priceHistory = new Chart();
+        Series seriesOfprice = new Series("Цена");
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower();
         public Form1()
         {
@@ -31,16 +32,6 @@ namespace PriceList
         {
             dataBase = new DataBase();
             dataBase.dbConnect();
-            var model = new Model("model" + random.Next(1, 1000));
-            var monufacturer = new Monufacturer("monudacturer" + random.Next(1, 1000), "Россия", "mon.com");
-            var product = new Product(monufacturer, model, "product" + random.Next(1, 1000));
-            var saler = new Saler("saler" + random.Next(1, 1000), "Lenin str", "8(800)555-35-35", "saler.com");
-            var price = new Price(saler, product, 1000);
-            dataBase.addModel(model);
-            dataBase.addMonufacturer(monufacturer);
-            dataBase.addPrice(price);
-            dataBase.addProduct(product);
-            dataBase.addSaler(saler);
             setBindingSource();
             dgvSetting();
             cmbSetting();
@@ -48,7 +39,27 @@ namespace PriceList
             txtProductModelInfo.Text = (cmbProductModel.SelectedItem as Model)?.getInfo();
             txtPriceSalerInfo.Text = (cmbPriceSaler.SelectedItem as Saler)?.getInfo();
             txtPticeProductInfo.Text = (cmbPriceProduct.SelectedItem as Product)?.getInfo();
+            ChartSetting();
+            labelSerring();
         }
+
+        public void ChartSetting()
+        {
+            priceHistory.Parent = panelChart;
+            priceHistory.Location = new Point(0, 100);
+            priceHistory.Width = priceHistory.Parent.Width;
+            priceHistory.Height = 200;
+            priceHistory.ChartAreas.Add(new ChartArea("Цена товара"));
+            seriesOfprice.ChartType = SeriesChartType.FastLine;
+            seriesOfprice.ChartArea = "Цена товара";
+            priceHistory.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            priceHistory.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            priceHistory.ChartAreas[0].AxisX2.MajorGrid.Enabled = false;
+            priceHistory.Legends.Clear();
+            
+
+        }
+
         public void dgvSetting()
         {
             dgvModels.Columns[0].ReadOnly = true;
@@ -59,9 +70,36 @@ namespace PriceList
             
         }
 
+        public void labelSerring()
+        {
+            Label lblPriceSaler = new Label();
+            lblPriceSaler.Parent = panelChart;
+            lblPriceSaler.Text = "Продавец";
+            lblPriceSaler.Location = new Point(40, 20);
+
+            Label lblPriceProduct = new Label();
+            lblPriceProduct.Parent = panelChart;
+            lblPriceProduct.Text = "Продукт";
+            lblPriceProduct.Location = new Point(255, 20);
+        }
+
         public void cmbSetting()
         {
             cmbMonufacturerCountry.SelectedIndex = 0;
+
+            cmbPriceSalerfound = new System.Windows.Forms.ComboBox();
+            cmbPriceSalerfound.Parent = panelChart;
+            cmbPriceSalerfound.Location = new Point(10, 40);
+            cmbPriceSalerfound.DataSource = salerBindingSource;
+            cmbPriceSalerfound.SelectedIndexChanged += PriceSalerFoundChanged;
+            cmbPriceSalerfound.SelectedIndex = 0;
+
+            cmbPriceProductfound = new System.Windows.Forms.ComboBox();
+            cmbPriceProductfound.Parent = panelChart;
+            cmbPriceProductfound.Location = new Point(220, 40);
+            cmbPriceProductfound.DataSource = productBindingSource;
+            cmbPriceProductfound.SelectedIndexChanged += PriceProductFoundChanged;
+            cmbPriceProductfound.SelectedIndex = 0;
         }
 
         public void setBindingSource()
@@ -672,21 +710,7 @@ namespace PriceList
             }
         }
         #endregion
-
-        private void cbPriceIsEdit_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbPriceIsEdit.Checked)
-            {
-                dgvPriceList.Columns[3].ReadOnly = false;
-                dgvPriceList.Columns[4].Visible = true;
-            }
-            else
-            {
-                dgvPriceList.Columns[3].ReadOnly = true;
-                dgvPriceList.Columns[4].Visible = false;
-            }
-        }
-
+        #region Работа с ценами
         private void dgvPriceList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -703,38 +727,7 @@ namespace PriceList
                 }
             }
         }
-        Price selectedPrice;
-        private void dgvPriceList_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            selectedPrice = new Price();
-            selectedPrice.id = dgvPriceList.Rows[e.RowIndex].Cells[0].Value.ToString();
-            selectedPrice.saler = dgvPriceList.Rows[e.RowIndex].Cells[1].Value as Saler;
-            selectedPrice.product = dgvPriceList.Rows[e.RowIndex].Cells[2].Value as Product;
-            selectedPrice.price = Convert.ToInt32(dgvPriceList.Rows[e.RowIndex].Cells[3].Value);
-        }
-
-        private void dgvPriceList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            var price = new Price();
-            price.id = dgvPriceList.Rows[e.RowIndex].Cells[0].Value.ToString();
-            price.saler = dgvPriceList.Rows[e.RowIndex].Cells[1].Value as Saler;
-            price.product = dgvPriceList.Rows[e.RowIndex].Cells[2].Value as Product;
-            price.price = Convert.ToInt32(dgvPriceList.Rows[e.RowIndex].Cells[3].Value);
-            if (selectedPrice.Equals(price))
-            {
-                return;
-            }
-            var dialogResult = messageBoxClickResult("Изменить эту запись?");
-            if (dialogResult == DialogResult.No)
-            {
-                dgvPriceList[3, e.RowIndex].Value = selectedPrice.price;
-                return;
-            }
-            if (dialogResult == DialogResult.Yes)
-            {
-                dataBase.updatePrice(dgvPriceList.CurrentRow.DataBoundItem as Price);
-            }
-        }
+        
 
         private void cmbPriceSaler_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -742,7 +735,8 @@ namespace PriceList
             {
                 txtPriceSalerInfo.Text = (cmbPriceSaler.SelectedItem as Saler)?.getInfo();
             }
-            catch (NullReferenceException) { }
+            catch (Exception) { }
+           
         }
 
         private void cmbSalerProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -751,7 +745,73 @@ namespace PriceList
             {
                 txtPticeProductInfo.Text = (cmbPriceProduct.SelectedItem as Product)?.getInfo();
             }
-            catch (NullReferenceException) { }
+            catch (Exception) { }
+            
         }
+
+        private void btnPriceAdd_Click(object sender, EventArgs e)
+        {
+            var product = cmbPriceProduct.SelectedItem as Product;
+            var saler = cmbPriceSaler.SelectedItem as Saler;
+            var price = new Price();
+            price.price = (int)nudPriceCost.Value;
+            price.saler = saler;
+            price.product = product;
+            priceBindingSource.Add(price);
+            dataBase.addPrice(price);
+            txtProductTitle.Clear();
+            messageBoxSuccessAdd();
+        }
+
+        private void cbPriceIsDelelte_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPriceIsDelelte.Checked)
+            {
+                dgvPriceList.Columns[5].Visible = true;
+            }
+            else
+            {
+                dgvPriceList.Columns[5].Visible = false;
+            }
+        }
+        private void PriceSalerFoundChanged(object sender, EventArgs e)
+        {
+            seriesOfprice.Points.Clear();
+            priceHistory.Series.Clear();
+            var product = cmbPriceProductfound.SelectedItem as Product;
+            var saler = cmbPriceSalerfound.SelectedItem as Saler;
+            var price = new Price();
+            price.price = 0;
+            price.saler = saler;
+            price.product = product;
+            var priceList = dataBase.getPrice(price);
+            foreach (var p in priceList)
+            {
+                seriesOfprice.Points.AddXY(p.dateTime, p.price);
+            }
+            priceHistory.Series.Add(seriesOfprice);
+            priceHistory.Series[0].IsValueShownAsLabel = false;
+        }
+
+        private void PriceProductFoundChanged(object sender, EventArgs e)
+        {
+            seriesOfprice.Points.Clear();
+            priceHistory.Series.Clear();
+            var product = cmbPriceProductfound.SelectedItem as Product;
+            var saler = cmbPriceSalerfound.SelectedItem as Saler;
+            var price = new Price();
+            price.price = 0;
+            price.saler = saler;
+            price.product = product;
+            var priceList = dataBase.getPrice(price);
+            var count = priceList.Count;
+            foreach (var p in priceList)
+            {
+                seriesOfprice.Points.AddXY(p.dateTime, p.price);
+            }
+            priceHistory.Series.Add(seriesOfprice);
+        }
+
+        #endregion
     }
 }

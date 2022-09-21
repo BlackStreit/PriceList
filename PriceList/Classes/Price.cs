@@ -17,9 +17,11 @@ namespace PriceList.Classes
         public Product product { get; set; }
         [DisplayName("Цена")]
         public int price { get; set; }
+        public DateTime dateTime { get; set; }
         public Price()
         {
             id = Guid.NewGuid().ToString();
+            this.dateTime = DateTime.Now;
         }
         
         public Price(Saler saler, Product product, int price)
@@ -28,6 +30,7 @@ namespace PriceList.Classes
             this.saler = saler;
             this.product = product;
             this.price = price;
+            this.dateTime = DateTime.Now;
         }
 
         public override bool Equals(object obj)
@@ -38,5 +41,9 @@ namespace PriceList.Classes
                    (obj as Price).product.Equals(product) &&
                    this.price == price.price;
         }
+    }
+
+    public class DataTime
+    {
     }
 }

@@ -122,25 +122,27 @@
             this.Удаление = new System.Windows.Forms.DataGridViewButtonColumn();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.cbPriceIsDelelte = new System.Windows.Forms.CheckBox();
             this.tabControl6 = new System.Windows.Forms.TabControl();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.txtPticeProductInfo = new System.Windows.Forms.RichTextBox();
             this.txtPriceSalerInfo = new System.Windows.Forms.RichTextBox();
             this.cmbPriceProduct = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.btnPriceAdd = new System.Windows.Forms.Button();
+            this.nudPriceCost = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.cmbPriceSaler = new System.Windows.Forms.ComboBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.cbPriceIsEdit = new System.Windows.Forms.CheckBox();
+            this.panelChart = new System.Windows.Forms.Panel();
             this.dgvPriceList = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Имя = new System.Windows.Forms.DataGridViewButtonColumn();
             this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
@@ -179,7 +181,8 @@
             this.tabControl6.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPriceCost)).BeginInit();
+            this.tabPage15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -1154,8 +1157,8 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.cbPriceIsDelelte);
             this.tabPage5.Controls.Add(this.tabControl6);
-            this.tabPage5.Controls.Add(this.cbPriceIsEdit);
             this.tabPage5.Controls.Add(this.dgvPriceList);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
@@ -1164,6 +1167,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Список цен";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // cbPriceIsDelelte
+            // 
+            this.cbPriceIsDelelte.AutoSize = true;
+            this.cbPriceIsDelelte.Location = new System.Drawing.Point(755, 19);
+            this.cbPriceIsDelelte.Name = "cbPriceIsDelelte";
+            this.cbPriceIsDelelte.Size = new System.Drawing.Size(125, 17);
+            this.cbPriceIsDelelte.TabIndex = 4;
+            this.cbPriceIsDelelte.Text = "Включить удаление";
+            this.cbPriceIsDelelte.UseVisualStyleBackColor = true;
+            this.cbPriceIsDelelte.CheckedChanged += new System.EventHandler(this.cbPriceIsDelelte_CheckedChanged);
             // 
             // tabControl6
             // 
@@ -1191,8 +1205,8 @@
             this.groupBox8.Controls.Add(this.txtPticeProductInfo);
             this.groupBox8.Controls.Add(this.txtPriceSalerInfo);
             this.groupBox8.Controls.Add(this.cmbPriceProduct);
-            this.groupBox8.Controls.Add(this.button1);
-            this.groupBox8.Controls.Add(this.numericUpDown1);
+            this.groupBox8.Controls.Add(this.btnPriceAdd);
+            this.groupBox8.Controls.Add(this.nudPriceCost);
             this.groupBox8.Controls.Add(this.label14);
             this.groupBox8.Controls.Add(this.label16);
             this.groupBox8.Controls.Add(this.label15);
@@ -1235,32 +1249,33 @@
             this.cmbPriceProduct.ValueMember = "id";
             this.cmbPriceProduct.SelectedIndexChanged += new System.EventHandler(this.cmbSalerProduct_SelectedIndexChanged);
             // 
-            // button1
+            // btnPriceAdd
             // 
-            this.button1.Location = new System.Drawing.Point(26, 315);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 43);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnPriceAdd.Location = new System.Drawing.Point(26, 315);
+            this.btnPriceAdd.Name = "btnPriceAdd";
+            this.btnPriceAdd.Size = new System.Drawing.Size(83, 43);
+            this.btnPriceAdd.TabIndex = 6;
+            this.btnPriceAdd.Text = "Добавить";
+            this.btnPriceAdd.UseVisualStyleBackColor = true;
+            this.btnPriceAdd.Click += new System.EventHandler(this.btnPriceAdd_Click);
             // 
-            // numericUpDown1
+            // nudPriceCost
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(6, 289);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudPriceCost.Location = new System.Drawing.Point(6, 289);
+            this.nudPriceCost.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.nudPriceCost.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 5;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.nudPriceCost.Name = "nudPriceCost";
+            this.nudPriceCost.Size = new System.Drawing.Size(120, 20);
+            this.nudPriceCost.TabIndex = 5;
+            this.nudPriceCost.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -1308,6 +1323,7 @@
             // 
             // tabPage15
             // 
+            this.tabPage15.Controls.Add(this.panelChart);
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
@@ -1316,16 +1332,13 @@
             this.tabPage15.Text = "Поиск";
             this.tabPage15.UseVisualStyleBackColor = true;
             // 
-            // cbPriceIsEdit
+            // panelChart
             // 
-            this.cbPriceIsEdit.AutoSize = true;
-            this.cbPriceIsEdit.Location = new System.Drawing.Point(726, 28);
-            this.cbPriceIsEdit.Name = "cbPriceIsEdit";
-            this.cbPriceIsEdit.Size = new System.Drawing.Size(155, 17);
-            this.cbPriceIsEdit.TabIndex = 2;
-            this.cbPriceIsEdit.Text = "Влючить редактирование";
-            this.cbPriceIsEdit.UseVisualStyleBackColor = true;
-            this.cbPriceIsEdit.CheckedChanged += new System.EventHandler(this.cbPriceIsEdit_CheckedChanged);
+            this.panelChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelChart.Location = new System.Drawing.Point(3, 3);
+            this.panelChart.Name = "panelChart";
+            this.panelChart.Size = new System.Drawing.Size(353, 408);
+            this.panelChart.TabIndex = 0;
             // 
             // dgvPriceList
             // 
@@ -1337,15 +1350,14 @@
             this.salerDataGridViewTextBoxColumn,
             this.productDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn,
+            this.dateTime,
             this.Имя});
             this.dgvPriceList.DataSource = this.priceBindingSource;
             this.dgvPriceList.Location = new System.Drawing.Point(23, 19);
             this.dgvPriceList.Name = "dgvPriceList";
             this.dgvPriceList.Size = new System.Drawing.Size(585, 414);
             this.dgvPriceList.TabIndex = 1;
-            this.dgvPriceList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvPriceList_CellBeginEdit);
             this.dgvPriceList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPriceList_CellContentClick);
-            this.dgvPriceList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPriceList_CellEndEdit);
             this.dgvPriceList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
             // 
             // idDataGridViewTextBoxColumn4
@@ -1377,6 +1389,13 @@
             this.priceDataGridViewTextBoxColumn.HeaderText = "Цена";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateTime
+            // 
+            this.dateTime.DataPropertyName = "dateTime";
+            this.dateTime.HeaderText = "Дата";
+            this.dateTime.Name = "dateTime";
+            this.dateTime.ReadOnly = true;
             // 
             // Имя
             // 
@@ -1449,7 +1468,8 @@
             this.tabPage14.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPriceCost)).EndInit();
+            this.tabPage15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1552,19 +1572,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn monufacturerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Удаление;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn Имя;
         private System.Windows.Forms.BindingSource priceBindingSource;
-        private System.Windows.Forms.CheckBox cbPriceIsEdit;
         private System.Windows.Forms.TabControl tabControl6;
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.ComboBox cmbPriceProduct;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button btnPriceAdd;
+        private System.Windows.Forms.NumericUpDown nudPriceCost;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
@@ -1572,6 +1586,14 @@
         private System.Windows.Forms.TabPage tabPage15;
         private System.Windows.Forms.RichTextBox txtPticeProductInfo;
         private System.Windows.Forms.RichTextBox txtPriceSalerInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateTime;
+        private System.Windows.Forms.DataGridViewButtonColumn Имя;
+        private System.Windows.Forms.CheckBox cbPriceIsDelelte;
+        private System.Windows.Forms.Panel panelChart;
     }
 }
 
