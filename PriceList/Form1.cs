@@ -825,7 +825,7 @@ namespace PriceList
         }
         #endregion
         bool isClear = false;
-        int isSecondClear = 1;
+        int isSecondClear = 2;
         private void btnPriceClear_Click(object sender, EventArgs e)
         {
             isClear = true;
