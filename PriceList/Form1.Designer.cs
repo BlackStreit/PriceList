@@ -137,6 +137,7 @@
             this.cmbPriceSaler = new System.Windows.Forms.ComboBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.panelChart = new System.Windows.Forms.Panel();
+            this.btnPriceClear = new System.Windows.Forms.Button();
             this.dgvPriceList = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -183,6 +184,7 @@
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPriceCost)).BeginInit();
             this.tabPage15.SuspendLayout();
+            this.panelChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -1334,11 +1336,22 @@
             // 
             // panelChart
             // 
+            this.panelChart.Controls.Add(this.btnPriceClear);
             this.panelChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChart.Location = new System.Drawing.Point(3, 3);
             this.panelChart.Name = "panelChart";
             this.panelChart.Size = new System.Drawing.Size(353, 408);
             this.panelChart.TabIndex = 0;
+            // 
+            // btnPriceClear
+            // 
+            this.btnPriceClear.Location = new System.Drawing.Point(116, 344);
+            this.btnPriceClear.Name = "btnPriceClear";
+            this.btnPriceClear.Size = new System.Drawing.Size(93, 41);
+            this.btnPriceClear.TabIndex = 0;
+            this.btnPriceClear.Text = "Сбросить";
+            this.btnPriceClear.UseVisualStyleBackColor = true;
+            this.btnPriceClear.Click += new System.EventHandler(this.btnPriceClear_Click);
             // 
             // dgvPriceList
             // 
@@ -1470,6 +1483,7 @@
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPriceCost)).EndInit();
             this.tabPage15.ResumeLayout(false);
+            this.panelChart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1594,6 +1608,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Имя;
         private System.Windows.Forms.CheckBox cbPriceIsDelelte;
         private System.Windows.Forms.Panel panelChart;
+        private System.Windows.Forms.Button btnPriceClear;
     }
 }
 

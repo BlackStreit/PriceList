@@ -1,5 +1,9 @@
 ﻿using Db4objects.Db4o;
+using Db4objects.Db4o.Internal.Slots;
+using Db4objects.Db4o.Linq;
+using Db4objects.Db4o.Query;
 using PriceList.Classes;
+using Sharpen.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +16,10 @@ namespace PriceList
     {
 
         /// <summary>
-        /// сделать все возможные выводу QuertBeExample, Query, 
+        /// сделать все возможные выводу QueryBeExample+
+        /// Native(Query)+
+        /// Soda+
+        /// Linq+
         /// </summary>
         const String filename = @"pricelist.yap";
         IObjectContainer db;
@@ -39,19 +46,23 @@ namespace PriceList
 
         public void updateModel(Model model)
         {
-            Model fModel = db.Query<Model>(mdl => mdl.id == model.id)[0];
-            fModel.title = model.title;
-            db.Store(fModel);
+            IEnumerable<Model> result = from Model mdl in db.Cast<Model>()
+                                        where mdl.id == model.id
+                                        select mdl;
+            var modl = result.First();
+            modl.title = model.title;
+            db.Store(modl);
 
         }
         public void deleteModel(string id)
         {
+
             try
             {
                 Product product = db.Query<Product>(prd => prd.model.id == id)[0];
                 db.Delete(product);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -66,7 +77,15 @@ namespace PriceList
         }
         public List<Monufacturer> GetMonufacturers()
         {
-            List<Monufacturer> monufacturers = db.Query<Monufacturer>().ToList<Monufacturer>();
+            IQuery query = db.Query();
+            query.Constrain(typeof(Monufacturer));
+            IObjectSet result = query.Execute();
+            var monufacturers = new List<Monufacturer>();
+            foreach(var item in result)
+            {
+                monufacturers.Add(item as Monufacturer);
+            }
+            
             return monufacturers;
         }
         public void deleteMonufacturer(string id)
@@ -136,17 +155,53 @@ namespace PriceList
         }
         public List<Price> getPrice(Price price)
         {
-            var list = new List<Price>();
-            try
-            {
-                list = db.Query<Price>(prs => prs.product.id == price.product?.id
-            && prs.saler.id == price.saler?.id).ToList<Price>();
-            }
-            catch(NullReferenceException)
-            {
-
-            }
+            IEnumerable<Price> priceList = from Price prc in db.Cast<Price>()
+                                           where prc.product.id == price.product?.id
+                                            && prc.saler.id == price.saler?.id
+                                            select prc;
+            var list = priceList.ToList();
             return list;
+        }
+        public List<Product> getPriceProduct()
+        {
+            var list = db.Query<Price>().ToList<Price>();
+            var ans = new List<Product>();
+            foreach (var p in list)
+            {
+                ans.Add(p.product);
+            }
+            ans.Distinct().ToList();
+            return new HashSet<Product>(ans).ToList();
+        }
+        public List<Saler> getPriceSaler()
+        {
+            var list = db.Query<Price>().ToList<Price>();
+            var ans = new List<Saler>();
+            foreach (var p in list)
+            {
+                ans.Add(p.saler);
+            }
+            return new HashSet<Saler>(ans).ToList();
+        }
+        public List<Product> getPriceProduct(string id)
+        {
+            var list = db.Query<Price>(prs => prs.saler.id == id).ToList<Price>();
+            var ans = new List<Product>();
+            foreach(var p in list)
+            {
+                ans.Add(p.product);
+            }
+            return new HashSet<Product>(ans).ToList(); ;
+        }
+        public List<Saler> getPriceSaler(string id)
+        {
+            var list = db.Query<Price>(prs => prs.product.id == id).ToList<Price>();
+            var ans = new List<Saler>();
+            foreach (var p in list)
+            {
+                ans.Add(p.saler);
+            }
+            return new HashSet<Saler>(ans).ToList(); ;
         }
         #endregion
         #region Работа с продуктом
@@ -157,6 +212,10 @@ namespace PriceList
         public List<Product> GetProducts()
         {
             return db.Query<Product>().ToList<Product>();
+        }
+        public List<Product> GetProducts(string id)
+        {
+            return db.Query<Product>(prd => prd.id == id).ToList<Product>();
         }
         internal void deleteProduct(string id)
         {
@@ -203,6 +262,10 @@ namespace PriceList
         public List<Saler> GetSaler()
         {
             return db.Query<Saler>().ToList<Saler>();
+        }
+        public List<Saler> GetSaler(string salerId)
+        {
+            return db.Query<Saler>(slr => slr.id == salerId).ToList<Saler>();
         }
         public void deleteSaler(string id)
         {
