@@ -306,5 +306,33 @@ namespace PriceList
 
         }
         #endregion
+        #region Сода
+        public void AddSoda(Soda soda)
+        {
+            db.Store(soda);
+        }
+        public List<Soda> SodaQuery()
+        {
+            IQuery query = db.Query();
+            query.Constrain(typeof(Soda));
+            IQuery ageQuery = query.Descend("_age");
+            IQuery nameQuery = query.Descend("_name");
+            IQuery lastNameQuery = query.Descend("_lastName");
+            query.Descend("_money").Constrain(10000).Greater().And(
+                ageQuery.Constrain(17).Greater().
+                And(ageQuery.Constrain(65).Smaller())
+                .And(nameQuery.Constrain("a").StartsWith(true)
+                .Or(nameQuery.Constrain("u").StartsWith(false)))
+                .And(lastNameQuery.Constrain("x").EndsWith(false)
+                .Or(lastNameQuery.Constrain("t").Like())));
+            IObjectSet result = query.Execute();
+            var soda = new List<Soda>();
+            foreach(var r in result)
+            {
+                soda.Add(r as Soda);
+            }
+            return soda;
+        }
+        #endregion
     }
 }

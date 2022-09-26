@@ -27,8 +27,6 @@ namespace PriceList
         public Form1()
         {
             InitializeComponent();
-            
-
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -37,7 +35,17 @@ namespace PriceList
             setBindingSource();
             dgvSetting();
             cmbSetting();
-
+            Soda soda;
+            for (var i = 0; i < 100; i++)
+            {
+                soda = new Soda();
+                soda.Name = generateString(4, 10);
+                soda.Age = random.Next(1, 100);
+                soda.LastName = generateString(5, 20);
+                soda.MoneyCount = random.Next(5000, 100000);
+                dataBase.AddSoda(soda);
+            }
+            var result = dataBase.SodaQuery();
             txtProductMonufacturerInfo.Text = (cmbProductMonufacturer.SelectedItem as Monufacturer)?.getInfo();
             txtProductModelInfo.Text = (cmbProductModel.SelectedItem as Model)?.getInfo();
             txtPriceSalerInfo.Text = (cmbPriceSaler.SelectedItem as Saler)?.getInfo();
