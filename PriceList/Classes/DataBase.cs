@@ -7,6 +7,7 @@ using Sharpen.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,9 +39,14 @@ namespace PriceList
         {
             db.Store(model);
         }
+        public List<Model> getModels()
+        {
+            List<Model> list = db.Query<Model>().ToList<Model>();
+            return list;
+        }
         public List<Model> getModels(string title)
         {
-            List<Model> list = db.Query<Model>(mdl => mdl.title.Contains(title)).ToList<Model>();
+            List<Model> list = db.Query<Model>(mdl => mdl.Title.Contains(title)).ToList<Model>();
             return list;
         }
 
@@ -50,7 +56,7 @@ namespace PriceList
                                         where mdl.id == model.id
                                         select mdl;
             var modl = result.First();
-            modl.title = model.title;
+            modl.Title = model.Title;
             db.Store(modl);
 
         }
@@ -85,7 +91,6 @@ namespace PriceList
             {
                 monufacturers.Add(item as Monufacturer);
             }
-            
             return monufacturers;
         }
         public void deleteMonufacturer(string id)
@@ -202,6 +207,14 @@ namespace PriceList
                 ans.Add(p.saler);
             }
             return new HashSet<Saler>(ans).ToList(); ;
+        }
+        public double getAvarangePrice(Saler saler, Product product)
+        {
+            var ans = (from Price prc in db.Cast<Price>()
+                      where prc.saler == saler
+                      && prc.product == product
+                      select prc.price).Average();
+            return ans;
         }
         #endregion
         #region Работа с продуктом

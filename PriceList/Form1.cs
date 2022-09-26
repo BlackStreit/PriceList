@@ -1,14 +1,14 @@
-﻿using Db4objects.Db4o.Internal.Mapping;
+﻿
 using PriceList.Classes;
-using Sharpen.Util;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Net.Mime.MediaTypeNames;
 using ComboBox = System.Windows.Forms.ComboBox;
 using Random = System.Random;
 
@@ -27,6 +27,8 @@ namespace PriceList
         public Form1()
         {
             InitializeComponent();
+            
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -35,6 +37,7 @@ namespace PriceList
             setBindingSource();
             dgvSetting();
             cmbSetting();
+
             txtProductMonufacturerInfo.Text = (cmbProductMonufacturer.SelectedItem as Monufacturer)?.getInfo();
             txtProductModelInfo.Text = (cmbProductModel.SelectedItem as Model)?.getInfo();
             txtPriceSalerInfo.Text = (cmbPriceSaler.SelectedItem as Saler)?.getInfo();
@@ -112,7 +115,7 @@ namespace PriceList
             {
                 monufacturerBindingSource.Add(mon);
             }
-            foreach (var m in dataBase.getModels(""))
+            foreach (var m in dataBase.getModels())
             {
                 modelBindingSource1.Add(m);
             }
@@ -210,7 +213,7 @@ namespace PriceList
             for (int i = 0; i <= nudModelCount.Value; i++)
             {
                 Model randomModel = new Model();
-                randomModel.title = generateString(5, 15);
+                randomModel.Title = generateString(5, 15);
                 modelBindingSource1.Add(randomModel);
                 dataBase.addModel(randomModel);
             }
@@ -220,21 +223,21 @@ namespace PriceList
         //Конец редатикрования ячейки и изменение данных
         private void dgvModels_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (selectedModel.title.Equals(dgvModels[1, e.RowIndex].Value.ToString()))
+            if (selectedModel.Title.Equals(dgvModels[1, e.RowIndex].Value.ToString()))
             {
                 return;
             }
             var dialogResult = messageBoxClickResult("Изменить эту запись?");
             if (dialogResult == DialogResult.No)
             {
-                dgvModels[1, e.RowIndex].Value = selectedModel.title;
+                dgvModels[1, e.RowIndex].Value = selectedModel.Title;
                 return;
             }
             if (dialogResult == DialogResult.Yes)
             {
                 var model = new Model();
                 model.id = dgvModels.Rows[e.RowIndex].Cells[0].Value.ToString();
-                model.title = dgvModels.Rows[e.RowIndex].Cells[1].Value.ToString();
+                model.Title = dgvModels.Rows[e.RowIndex].Cells[1].Value.ToString();
                 dataBase.updateModel(model);
             }
         }
@@ -800,6 +803,7 @@ namespace PriceList
                         seriesOfprice.Points.AddXY(p.dateTime, p.price);
                     }
                     priceHistory.Series.Add(seriesOfprice);
+                    txtAvarangePrice.Text = $@"Средняя цена: {dataBase.getAvarangePrice(saler,product)}";
                 }
                 else if ((sender as ComboBox).Name == "cmbPriceSalerfound")
                 {
@@ -818,12 +822,13 @@ namespace PriceList
                         seriesOfprice.Points.AddXY(p.dateTime, p.price);
                     }
                     priceHistory.Series.Add(seriesOfprice);
+                    txtAvarangePrice.Text = $@"Средняя цена: {dataBase.getAvarangePrice(saler, product)}";
                 }
             }
             isClear = false;
             isSecondClear++;
         }
-        #endregion
+
         bool isClear = false;
         int isSecondClear = 2;
         private void btnPriceClear_Click(object sender, EventArgs e)
@@ -835,5 +840,7 @@ namespace PriceList
             seriesOfprice.Points.Clear();
             priceHistory.Series.Clear();
         }
+
+        #endregion
     }
 }

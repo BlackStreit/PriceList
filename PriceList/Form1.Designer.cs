@@ -137,6 +137,7 @@
             this.cmbPriceSaler = new System.Windows.Forms.ComboBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.panelChart = new System.Windows.Forms.Panel();
+            this.txtAvarangePrice = new System.Windows.Forms.Label();
             this.btnPriceClear = new System.Windows.Forms.Button();
             this.dgvPriceList = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -396,7 +397,7 @@
             // titleDataGridViewTextBoxColumn
             // 
             this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "title";
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
             this.titleDataGridViewTextBoxColumn.HeaderText = "Название";
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             this.titleDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1270,7 +1271,7 @@
             0,
             0});
             this.nudPriceCost.Minimum = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
             0});
@@ -1278,7 +1279,7 @@
             this.nudPriceCost.Size = new System.Drawing.Size(120, 20);
             this.nudPriceCost.TabIndex = 5;
             this.nudPriceCost.Value = new decimal(new int[] {
-            1,
+            10,
             0,
             0,
             0});
@@ -1336,12 +1337,21 @@
             // 
             // panelChart
             // 
+            this.panelChart.Controls.Add(this.txtAvarangePrice);
             this.panelChart.Controls.Add(this.btnPriceClear);
             this.panelChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChart.Location = new System.Drawing.Point(3, 3);
             this.panelChart.Name = "panelChart";
             this.panelChart.Size = new System.Drawing.Size(353, 408);
             this.panelChart.TabIndex = 0;
+            // 
+            // txtAvarangePrice
+            // 
+            this.txtAvarangePrice.AutoSize = true;
+            this.txtAvarangePrice.Location = new System.Drawing.Point(16, 318);
+            this.txtAvarangePrice.Name = "txtAvarangePrice";
+            this.txtAvarangePrice.Size = new System.Drawing.Size(0, 13);
+            this.txtAvarangePrice.TabIndex = 1;
             // 
             // btnPriceClear
             // 
@@ -1484,6 +1494,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudPriceCost)).EndInit();
             this.tabPage15.ResumeLayout(false);
             this.panelChart.ResumeLayout(false);
+            this.panelChart.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPriceList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1609,6 +1620,9 @@
         private System.Windows.Forms.CheckBox cbPriceIsDelelte;
         private System.Windows.Forms.Panel panelChart;
         private System.Windows.Forms.Button btnPriceClear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn loginDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label txtAvarangePrice;
     }
 }
 
