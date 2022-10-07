@@ -42,8 +42,4 @@ namespace PriceList.Classes
                    this.price == price.price;
         }
     }
-
-    public class DataTime
-    {
-    }
 }

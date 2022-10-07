@@ -12,16 +12,8 @@ namespace PriceList.Classes
     {
         [DisplayName("id")]
         public string id { get; set; }
-        private string _title;
         [DisplayName("Название")]
-        public string Title
-        {
-            get { return _title; }
-            set { _title = value; }
-        }
-
-
-
+        public string title { get; set; }
         public Model()
         {
             id = Guid.NewGuid().ToString();
@@ -30,18 +22,18 @@ namespace PriceList.Classes
         public Model(string title)
         {
             id = Guid.NewGuid().ToString();
-            this._title = title;
+            this.title = title;
         }
 
         public string getInfo()
         {
-            var info = $"id: {id}\nНазвание: {_title}";
+            var info = $"id: {id}\nНазвание: {title}";
             return info;
         }
 
         public override string ToString()
         {
-            return _title;
+            return title;
         }
     }
 }

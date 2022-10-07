@@ -97,24 +97,30 @@ namespace PriceList
         public void cmbSetting()
         {
             cmbMonufacturerCountry.SelectedIndex = 0;
+            try
+            {
+                cmbPriceSalerfound = new System.Windows.Forms.ComboBox();
+                cmbPriceSalerfound.Parent = panelChart;
+                cmbPriceSalerfound.Location = new Point(10, 40);
+                cmbPriceSalerfound.DataSource = dataBase.getPriceSaler();
+                cmbPriceSalerfound.SelectedIndexChanged += PriceFoundChanged;
+                cmbPriceSalerfound.SelectedIndex = 0;
+                cmbPriceSalerfound.DropDownStyle = ComboBoxStyle.DropDownList;
+                cmbPriceSalerfound.Name = "cmbPriceSalerfound";
 
-            cmbPriceSalerfound = new System.Windows.Forms.ComboBox();
-            cmbPriceSalerfound.Parent = panelChart;
-            cmbPriceSalerfound.Location = new Point(10, 40);
-            cmbPriceSalerfound.DataSource = dataBase.getPriceSaler();
-            cmbPriceSalerfound.SelectedIndexChanged += PriceFoundChanged;
-            cmbPriceSalerfound.SelectedIndex = 0;
-            cmbPriceSalerfound.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbPriceSalerfound.Name = "cmbPriceSalerfound";
+                cmbPriceProductfound = new System.Windows.Forms.ComboBox();
+                cmbPriceProductfound.Parent = panelChart;
+                cmbPriceProductfound.Location = new Point(220, 40);
+                cmbPriceProductfound.DataSource = dataBase.getPriceProduct();
+                cmbPriceProductfound.SelectedIndexChanged += PriceFoundChanged;
+                cmbPriceProductfound.SelectedIndex = 0;
+                cmbPriceProductfound.DropDownStyle = ComboBoxStyle.DropDownList;
+                cmbPriceProductfound.Name = "cmbPriceProductfound";
+            }
+            catch(Exception ex)
+            {
 
-            cmbPriceProductfound = new System.Windows.Forms.ComboBox();
-            cmbPriceProductfound.Parent = panelChart;
-            cmbPriceProductfound.Location = new Point(220, 40);
-            cmbPriceProductfound.DataSource = dataBase.getPriceProduct();
-            cmbPriceProductfound.SelectedIndexChanged += PriceFoundChanged;
-            cmbPriceProductfound.SelectedIndex = 0;
-            cmbPriceProductfound.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbPriceProductfound.Name = "cmbPriceProductfound";
+            }
         }
 
         public void setBindingSource()
@@ -221,7 +227,7 @@ namespace PriceList
             for (int i = 0; i <= nudModelCount.Value; i++)
             {
                 Model randomModel = new Model();
-                randomModel.Title = generateString(5, 15);
+                randomModel.title = generateString(5, 15);
                 modelBindingSource1.Add(randomModel);
                 dataBase.addModel(randomModel);
             }
@@ -231,21 +237,21 @@ namespace PriceList
         //Конец редатикрования ячейки и изменение данных
         private void dgvModels_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (selectedModel.Title.Equals(dgvModels[1, e.RowIndex].Value.ToString()))
+            if (selectedModel.title.Equals(dgvModels[1, e.RowIndex].Value.ToString()))
             {
                 return;
             }
             var dialogResult = messageBoxClickResult("Изменить эту запись?");
             if (dialogResult == DialogResult.No)
             {
-                dgvModels[1, e.RowIndex].Value = selectedModel.Title;
+                dgvModels[1, e.RowIndex].Value = selectedModel.title;
                 return;
             }
             if (dialogResult == DialogResult.Yes)
             {
                 var model = new Model();
                 model.id = dgvModels.Rows[e.RowIndex].Cells[0].Value.ToString();
-                model.Title = dgvModels.Rows[e.RowIndex].Cells[1].Value.ToString();
+                model.title = dgvModels.Rows[e.RowIndex].Cells[1].Value.ToString();
                 dataBase.updateModel(model);
             }
         }

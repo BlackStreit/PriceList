@@ -46,7 +46,7 @@ namespace PriceList
         }
         public List<Model> getModels(string title)
         {
-            List<Model> list = db.Query<Model>(mdl => mdl.Title.Contains(title)).ToList<Model>();
+            List<Model> list = db.Query<Model>(mdl => mdl.title.Contains(title)).ToList<Model>();
             return list;
         }
 
@@ -56,7 +56,7 @@ namespace PriceList
                                         where mdl.id == model.id
                                         select mdl;
             var modl = result.First();
-            modl.Title = model.Title;
+            modl.title = model.title;
             db.Store(modl);
 
         }

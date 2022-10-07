@@ -46,9 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtModelfound = new System.Windows.Forms.TextBox();
             this.dgvModels = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDel = new System.Windows.Forms.DataGridViewButtonColumn();
             this.modelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
@@ -92,12 +89,6 @@
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.cbSalerIsEdit = new System.Windows.Forms.CheckBox();
             this.dgvSalers = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Удалить = new System.Windows.Forms.DataGridViewButtonColumn();
             this.salerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabControl5 = new System.Windows.Forms.TabControl();
@@ -147,6 +138,15 @@
             this.dateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Имя = new System.Windows.Forms.DataGridViewButtonColumn();
             this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDel = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Удалить = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -376,7 +376,7 @@
             this.dgvModels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvModels.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.titleDataGridViewTextBoxColumn,
+            this.title,
             this.btnDel});
             this.dgvModels.DataSource = this.modelBindingSource1;
             this.dgvModels.Location = new System.Drawing.Point(6, 18);
@@ -387,28 +387,6 @@
             this.dgvModels.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModels_CellContentClick);
             this.dgvModels.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModels_CellEndEdit);
             this.dgvModels.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Название";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // btnDel
-            // 
-            this.btnDel.HeaderText = "Удаление";
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Text = "Удалить";
-            this.btnDel.UseColumnTextForButtonValue = true;
-            this.btnDel.Visible = false;
             // 
             // modelBindingSource1
             // 
@@ -885,48 +863,6 @@
             this.dgvSalers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalers_CellContentClick);
             this.dgvSalers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalers_CellEndEdit);
             this.dgvSalers.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.tableValidating);
-            // 
-            // idDataGridViewTextBoxColumn2
-            // 
-            this.idDataGridViewTextBoxColumn2.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn2.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
-            // 
-            // titleDataGridViewTextBoxColumn2
-            // 
-            this.titleDataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.titleDataGridViewTextBoxColumn2.DataPropertyName = "title";
-            this.titleDataGridViewTextBoxColumn2.HeaderText = "Название";
-            this.titleDataGridViewTextBoxColumn2.Name = "titleDataGridViewTextBoxColumn2";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Телефон";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // siteDataGridViewTextBoxColumn1
-            // 
-            this.siteDataGridViewTextBoxColumn1.DataPropertyName = "site";
-            this.siteDataGridViewTextBoxColumn1.HeaderText = "Сайт";
-            this.siteDataGridViewTextBoxColumn1.Name = "siteDataGridViewTextBoxColumn1";
-            this.siteDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // Удалить
-            // 
-            this.Удалить.HeaderText = "Удаление";
-            this.Удалить.Name = "Удалить";
-            this.Удалить.Text = "Удалить";
-            this.Удалить.UseColumnTextForButtonValue = true;
-            this.Удалить.Visible = false;
             // 
             // salerBindingSource
             // 
@@ -1434,6 +1370,70 @@
             // 
             this.priceBindingSource.DataSource = typeof(PriceList.Classes.Price);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // title
+            // 
+            this.title.DataPropertyName = "title";
+            this.title.HeaderText = "title";
+            this.title.Name = "title";
+            this.title.ReadOnly = true;
+            // 
+            // btnDel
+            // 
+            this.btnDel.HeaderText = "Удаление";
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Text = "Удалить";
+            this.btnDel.UseColumnTextForButtonValue = true;
+            this.btnDel.Visible = false;
+            // 
+            // idDataGridViewTextBoxColumn2
+            // 
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            // 
+            // titleDataGridViewTextBoxColumn2
+            // 
+            this.titleDataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titleDataGridViewTextBoxColumn2.DataPropertyName = "title";
+            this.titleDataGridViewTextBoxColumn2.HeaderText = "Название";
+            this.titleDataGridViewTextBoxColumn2.Name = "titleDataGridViewTextBoxColumn2";
+            this.titleDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Адрес";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "Телефон";
+            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // siteDataGridViewTextBoxColumn1
+            // 
+            this.siteDataGridViewTextBoxColumn1.DataPropertyName = "site";
+            this.siteDataGridViewTextBoxColumn1.HeaderText = "Сайт";
+            this.siteDataGridViewTextBoxColumn1.Name = "siteDataGridViewTextBoxColumn1";
+            this.siteDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // Удалить
+            // 
+            this.Удалить.HeaderText = "Удаление";
+            this.Удалить.Name = "Удалить";
+            this.Удалить.Text = "Удалить";
+            this.Удалить.UseColumnTextForButtonValue = true;
+            this.Удалить.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1530,9 +1530,7 @@
         private System.Windows.Forms.TextBox txtModelfound;
         private System.Windows.Forms.BindingSource monufacturerBindingSource;
         private System.Windows.Forms.CheckBox cbModelIsEdit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn btnDel;
         private System.Windows.Forms.CheckBox cbMonufacturerIsEdit;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage8;
@@ -1555,12 +1553,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.BindingSource salerBindingSource;
         private System.Windows.Forms.CheckBox cbSalerIsEdit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn siteDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewButtonColumn Удалить;
         private System.Windows.Forms.TabControl tabControl4;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -1623,6 +1615,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn loginDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label txtAvarangePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewButtonColumn btnDel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siteDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn Удалить;
     }
 }
 
